@@ -74,7 +74,7 @@
             <column name="type_of_wood" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="wood_types" type="VARCHAR(100)">
+            <column name="hardness" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="price_cubic_meter" type="numeric(8,2)">
