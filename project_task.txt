@@ -1,0 +1,41 @@
+настроить username и email в настройках гитв на компе
+предлагаю String hardness хранить как enum.
+
+валидация сущностей
+
+ClientDTO
+    - name - не пустое, буквы
+    - surname - не пустое, буквы
+    - email - по паттерну + проверка на уникальность через БД
+    - phone - только цифры
+
+FurnitureDTO
+    - name - не пустое
+    - materialConsumption - не пустое и > BigDecimal.ZERO
+
+WoodSpeccyDTO
+    woodType - не пустая строка
+    hardness - существует
+    cubicMeterPrice - не null и > BigDecimal.ZERO
+
+OrderDTO
+    - client  - client.getId() != null
+    - orderDate - != null
+    - orderItems  - не пустой массив
+    OrderItemDTO
+        - furniture - furniture.getId() != null
+        - wood  - wood.getId() != null
+        - quantity != null, > 0
+        - price != null, > BigDecimal.ZERO
+
+
+создать эндпоинт для предварительного расчета цены.
+get эндпоинт с обязательными параметрами
+Integer furnitureId, Integer woodId, Integer quantity
+сервис для расчета цены должен достать мебель, достать дерево и посчитать стоимость
+если чего-то нет - возвращать bad request
+
+
+https://belarusbank.by/api/kursExchange?city=Брест
+создать эндпоинт с курсом валют беларусбанка в городе.  get эндпоинт, параметр city - обязательный.
+возвращать список из курсов трех валют: eur, usd, pln.
