@@ -1,4 +1,4 @@
-package project.furnitureworkshop.demo.controller;
+package project.furnitureworkshop.demo.controller.dto;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
@@ -66,7 +66,7 @@ public class ClientsDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientsDTO clientsDTO = (ClientsDTO)  o;
+        ClientsDTO clientsDTO = (ClientsDTO) o;
         return Objects.equals(id, clientsDTO.id) && Objects.equals(name, clientsDTO.name) && Objects.equals(surname, clientsDTO.surname) && Objects.equals(email, clientsDTO.email) && Objects.equals(phone, clientsDTO.phone);
     }
 

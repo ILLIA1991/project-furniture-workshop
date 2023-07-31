@@ -2,11 +2,11 @@ package project.furnitureworkshop.demo.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.furnitureworkshop.demo.controller.ClientsDTO;
+import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
 import project.furnitureworkshop.demo.converter.ClientsConverter;
 import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundException;
-import project.furnitureworkshop.demo.repository.Clients;
 import project.furnitureworkshop.demo.repository.SpringDataClientsRepository;
+import project.furnitureworkshop.demo.repository.model.Clients;
 import project.furnitureworkshop.demo.validator.ClientsValidator;
 
 import java.util.Collection;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class ClientsServiceImpl implements ClientsService{
+public class ClientsServiceImpl implements ClientsService {
 
     private final SpringDataClientsRepository clientsRepository;
     private final ClientsConverter clientsConverter;
@@ -52,14 +52,14 @@ public class ClientsServiceImpl implements ClientsService{
 
     @Override
     public void deleteById(Integer id) {
-        Clients clients = clientsRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("You're not with us anymore!:" + id));
+        Clients clients = clientsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("You're not with us anymore!:" + id));
         clientsRepository.delete(clients);
     }
 
     @Override
     @Transactional
     public ClientsDTO updateClients(Integer id, ClientsDTO clientsToUpdate) {
-        Clients clients = clientsRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
+        Clients clients = clientsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Client not found:" + id));
         Clients entityToUpdate = clientsConverter.convertToEntity(clientsToUpdate);
         entityToUpdate.setId(id);
         Clients updatedEntity = clientsRepository.save(entityToUpdate);

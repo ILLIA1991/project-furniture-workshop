@@ -1,6 +1,6 @@
 package project.furnitureworkshop.demo.service;
 
-import project.furnitureworkshop.demo.controller.ClientsDTO;
+import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface ClientsService {
 
     ClientsDTO getById(Integer id);
 
-    Integer createClient (ClientsDTO clientsDTO);
+    Integer createClient(ClientsDTO clientsDTO);
 
     void deleteById(Integer id);
 

@@ -1,4 +1,4 @@
-package project.furnitureworkshop.demo.repository;
+package project.furnitureworkshop.demo.repository.model;
 
 import jakarta.persistence.*;
 

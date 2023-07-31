@@ -1,8 +1,8 @@
 package project.furnitureworkshop.demo.converter;
 
 import org.springframework.stereotype.Component;
-import project.furnitureworkshop.demo.controller.ClientsDTO;
-import project.furnitureworkshop.demo.repository.Clients;
+import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
+import project.furnitureworkshop.demo.repository.model.Clients;
 
 import java.util.Collection;
 import java.util.List;
