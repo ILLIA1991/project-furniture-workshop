@@ -13,12 +13,12 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @JoinColumn
     @ManyToOne
     private Clients clients;
 
     @Column(name = "date_order")
-    private Date dateOrder;
+    private Date orderDate;
 
     @OneToMany(
             mappedBy = "order",
@@ -27,7 +27,7 @@ public class Order {
             fetch = FetchType.EAGER
 
     )
-    private List<OrdersItems> ordersItems = new ArrayList<>();
+    private List<OrderItem> ordersItems = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -45,19 +45,19 @@ public class Order {
         this.clients = clients;
     }
 
-    public Date getDateOrder() {
-        return dateOrder;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setDateOrder(Date dateOrder) {
-        this.dateOrder = dateOrder;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public List<OrdersItems> getOrdersItems() {
+    public List<OrderItem> getOrdersItems() {
         return ordersItems;
     }
 
-    public void setOrdersItems(List<OrdersItems> ordersItems) {
+    public void setOrdersItems(List<OrderItem> ordersItems) {
         this.ordersItems = ordersItems;
     }
 }

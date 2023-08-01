@@ -2,6 +2,8 @@ package project.furnitureworkshop.demo.repository.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "wood_species")
 public class Wood_Species {
@@ -10,26 +12,25 @@ public class Wood_Species {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "type_of_wood")
-    private String type_of_wood;
+    private String woodType;
     @Column(name = "hardness")
     private String hardness;
     @Column(name = "price_cubic_meter")
-    private Double price_cubic_meter;
+    private BigDecimal cubicMeterPrice;
 
-    public Wood_Species() {
-    }
 
-    public Wood_Species(String type_of_wood, String hardness, Double price_cubic_meter) {
-        this.type_of_wood = type_of_wood;
+
+    public Wood_Species(String woodType, String hardness, BigDecimal cubicMeterPrice) {
+        this.woodType = woodType;
         this.hardness = hardness;
-        this.price_cubic_meter = price_cubic_meter;
+        this.cubicMeterPrice = cubicMeterPrice;
     }
 
-    public Wood_Species(Integer id, String type_of_wood, String hardness, Double price_cubic_meter) {
+    public Wood_Species(Integer id, String woodType, String hardness, BigDecimal cubicMeterPrice) {
         this.id = id;
-        this.type_of_wood = type_of_wood;
+        this.woodType = woodType;
         this.hardness = hardness;
-        this.price_cubic_meter = price_cubic_meter;
+        this.cubicMeterPrice = cubicMeterPrice;
     }
 
     public Integer getId() {
@@ -40,12 +41,12 @@ public class Wood_Species {
         this.id = id;
     }
 
-    public String getType_of_wood() {
-        return type_of_wood;
+    public String getWoodType() {
+        return woodType;
     }
 
-    public void setType_of_wood(String type_of_wood) {
-        this.type_of_wood = type_of_wood;
+    public void setWoodType(String woodType) {
+        this.woodType = woodType;
     }
 
     public String getHardness() {
@@ -56,21 +57,21 @@ public class Wood_Species {
         this.hardness = hardness;
     }
 
-    public Double getPrice_cubic_meter() {
-        return price_cubic_meter;
+    public BigDecimal getCubicMeterPrice() {
+        return cubicMeterPrice;
     }
 
-    public void setPrice_cubic_meter(Double price_cubic_meter) {
-        this.price_cubic_meter = price_cubic_meter;
+    public void setCubicMeterPrice(BigDecimal cubicMeterPrice) {
+        this.cubicMeterPrice = cubicMeterPrice;
     }
 
     @Override
     public String toString() {
         return "Wood_Species{" +
                 "id=" + id +
-                ", type_of_wood='" + type_of_wood + '\'' +
+                ", type_of_wood='" + woodType + '\'' +
                 ", hardness='" + hardness + '\'' +
-                ", price_cubic_meter=" + price_cubic_meter +
+                ", price_cubic_meter=" + cubicMeterPrice +
                 '}';
     }
 }

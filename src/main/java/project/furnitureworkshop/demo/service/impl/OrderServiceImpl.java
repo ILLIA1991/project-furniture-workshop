@@ -1,23 +1,23 @@
-package project.furnitureworkshop.demo.service;
+package project.furnitureworkshop.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.furnitureworkshop.demo.controller.dto.OrderDTO;
 import project.furnitureworkshop.demo.converter.OrderConverter;
 import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundException;
-import project.furnitureworkshop.demo.repository.SpringDataOrderRepository;
+import project.furnitureworkshop.demo.repository.OrderRepository;
 import project.furnitureworkshop.demo.repository.model.Order;
+import project.furnitureworkshop.demo.service.OrderService;
 
-import java.util.Collection;
 import java.util.List;
 @Service
 @Transactional(readOnly = true)
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
-    private final SpringDataOrderRepository orderRepository;
+    private final OrderRepository orderRepository;
     private final OrderConverter orderConverter;
 
-    public OrderServiceImpl(SpringDataOrderRepository orderRepository, OrderConverter orderConverter) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderConverter orderConverter) {
         this.orderRepository = orderRepository;
         this.orderConverter = orderConverter;
     }

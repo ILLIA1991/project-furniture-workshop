@@ -4,7 +4,7 @@ import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
 
 import java.util.List;
 
-public interface ClientsService {
+public interface ClientService {
 
     List<ClientsDTO> getAllClients();
 
@@ -14,6 +14,6 @@ public interface ClientsService {
 
     void deleteById(Integer id);
 
-    ClientsDTO updateClients(Integer id, ClientsDTO clientsToUpdate);
+    ClientsDTO updateClient(Integer id, ClientsDTO clientsToUpdate);
 
 }

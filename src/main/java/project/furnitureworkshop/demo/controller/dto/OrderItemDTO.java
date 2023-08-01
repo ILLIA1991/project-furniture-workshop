@@ -1,15 +1,15 @@
 package project.furnitureworkshop.demo.controller.dto;
 
-import java.sql.Date;
+import java.math.BigDecimal;
 
-public class OrdersItemsDTO {
+public class OrderItemDTO {
 
     private Integer id;
     private OrderDTO order;
     private FurnitureDTO furniture;
-    private WoodSpeciesDTO woods;
+    private WoodSpeccyDTO wood;
     private Integer quantity;
-    private Double price;
+    private BigDecimal price;
 
     public Integer getId() {
         return id;
@@ -35,12 +35,12 @@ public class OrdersItemsDTO {
         this.furniture = furniture;
     }
 
-    public WoodSpeciesDTO getWoods() {
-        return woods;
+    public WoodSpeccyDTO getWood() {
+        return wood;
     }
 
-    public void setWoods(WoodSpeciesDTO woods) {
-        this.woods = woods;
+    public void setWood(WoodSpeccyDTO wood) {
+        this.wood = wood;
     }
 
     public Integer getQuantity() {
@@ -51,11 +51,11 @@ public class OrdersItemsDTO {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

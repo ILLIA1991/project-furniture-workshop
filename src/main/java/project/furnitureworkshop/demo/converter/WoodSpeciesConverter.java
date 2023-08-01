@@ -2,9 +2,9 @@ package project.furnitureworkshop.demo.converter;
 
 import org.springframework.stereotype.Component;
 
-import project.furnitureworkshop.demo.controller.dto.WoodSpeciesDTO;
-
+import project.furnitureworkshop.demo.controller.dto.WoodSpeccyDTO;
 import project.furnitureworkshop.demo.repository.model.Wood_Species;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -13,29 +13,29 @@ import java.util.stream.Collectors;
 @Component
 public class WoodSpeciesConverter {
 
-    public Wood_Species convertToEntity(WoodSpeciesDTO source) {
+    public Wood_Species convertToEntity(WoodSpeccyDTO source) {
         return new Wood_Species(source.getId(),
-                source.getType_of_wood(),
+                source.getWoodType(),
                 source.getHardness(),
-                source.getPrice_cubic_meter());
+                source.getCubicMeterPrice());
     }
 
-    public WoodSpeciesDTO convertToDto(Wood_Species source) {
+    public WoodSpeccyDTO convertToDto(Wood_Species source) {
         return convertWoosSpeciesToDto(source);
     }
 
-    public List<WoodSpeciesDTO> convertToDto(Collection<Wood_Species> source) {
+    public List<WoodSpeccyDTO> convertToDto(Collection<Wood_Species> source) {
         return source.stream()
                 .map(this::convertWoosSpeciesToDto)
                 .collect(Collectors.toList());
     }
 
-    public WoodSpeciesDTO convertWoosSpeciesToDto(Wood_Species source) {
-        WoodSpeciesDTO result = new WoodSpeciesDTO();
+    public WoodSpeccyDTO convertWoosSpeciesToDto(Wood_Species source) {
+        WoodSpeccyDTO result = new WoodSpeccyDTO();
         result.setId(source.getId());
-        result.setType_of_wood(source.getType_of_wood());
+        result.setWoodType(source.getWoodType());
         result.setHardness(source.getHardness());
-        result.setPrice_cubic_meter(source.getPrice_cubic_meter());
+        result.setCubicMeterPrice(source.getCubicMeterPrice());
         return result;
     }
 

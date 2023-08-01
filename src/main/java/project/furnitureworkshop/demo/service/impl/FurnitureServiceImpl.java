@@ -1,12 +1,13 @@
-package project.furnitureworkshop.demo.service;
+package project.furnitureworkshop.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.furnitureworkshop.demo.controller.dto.FurnitureDTO;
 import project.furnitureworkshop.demo.converter.FurnitureConverter;
 import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundException;
-import project.furnitureworkshop.demo.repository.SpringDataFurnitureRepository;
+import project.furnitureworkshop.demo.repository.FurnitureRepository;
 import project.furnitureworkshop.demo.repository.model.Furniture;
+import project.furnitureworkshop.demo.service.FurnitureService;
 import project.furnitureworkshop.demo.validator.FurnitureValidator;
 
 import java.util.Collection;
@@ -16,14 +17,14 @@ import java.util.Collection;
 public class FurnitureServiceImpl implements FurnitureService {
 
 
-    private final SpringDataFurnitureRepository furnitureRepository;
+    private final FurnitureRepository furnitureRepository;
 
     private final FurnitureConverter furnitureConverter;
 
     private final FurnitureValidator furnitureValidator;
 
 
-    public FurnitureServiceImpl(SpringDataFurnitureRepository furnitureRepository, FurnitureConverter furnitureConverter, FurnitureValidator furnitureValidator) {
+    public FurnitureServiceImpl(FurnitureRepository furnitureRepository, FurnitureConverter furnitureConverter, FurnitureValidator furnitureValidator) {
         this.furnitureRepository = furnitureRepository;
         this.furnitureConverter = furnitureConverter;
         this.furnitureValidator = furnitureValidator;

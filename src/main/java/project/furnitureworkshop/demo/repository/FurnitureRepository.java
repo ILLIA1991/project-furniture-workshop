@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import project.furnitureworkshop.demo.repository.model.Furniture;
 
 @Repository
-public interface SpringDataFurnitureRepository extends JpaRepository<Furniture, Integer> {
+public interface FurnitureRepository extends JpaRepository<Furniture, Integer> {
 }

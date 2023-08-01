@@ -1,7 +1,5 @@
 package project.furnitureworkshop.demo.controller.dto;
 
-import project.furnitureworkshop.demo.repository.model.Order;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ public class OrderDTO {
     private Integer id;
     private ClientsDTO clients;
     private Date dateOrder;
-    private List<OrdersItemsDTO> ordersItems = new ArrayList<>();
+    private List<OrderItemDTO> ordersItems = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -38,11 +36,11 @@ public class OrderDTO {
         this.dateOrder = dateOrder;
     }
 
-    public List<OrdersItemsDTO> getOrdersItems() {
+    public List<OrderItemDTO> getOrdersItems() {
         return ordersItems;
     }
 
-    public void setOrdersItems(List<OrdersItemsDTO> ordersItems) {
+    public void setOrdersItems(List<OrderItemDTO> ordersItems) {
         this.ordersItems = ordersItems;
     }
 

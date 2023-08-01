@@ -1,23 +1,37 @@
 package project.furnitureworkshop.demo.repository.model;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "orders_items")
-public class OrdersItems {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JoinColumn
     @ManyToOne
     private Order order;
+    @JoinColumn
     @ManyToOne
     private Furniture furniture;
+    @JoinColumn
     @ManyToOne
-    private Wood_Species woodSpecies;
+    private  Wood_Species woodSpeccy;
     @Column(name = "quantity")
     private Integer quantity;
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;
@@ -43,12 +57,12 @@ public class OrdersItems {
         this.furniture = furniture;
     }
 
-    public Wood_Species getWoodSpecies() {
-        return woodSpecies;
+    public Wood_Species getWoodSpeccy() {
+        return woodSpeccy;
     }
 
-    public void setWoodSpecies(Wood_Species woodSpecies) {
-        this.woodSpecies = woodSpecies;
+    public void setWoodSpeccy(Wood_Species woodSpeccy) {
+        this.woodSpeccy = woodSpeccy;
     }
 
     public Integer getQuantity() {
@@ -59,11 +73,5 @@ public class OrdersItems {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
-    }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
 }
