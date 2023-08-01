@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class WoodSpeciesConverter {
+public class WoodSpeccyConverter {
 
     public Wood_Species convertToEntity(WoodSpeccyDTO source) {
         return new Wood_Species(source.getId(),

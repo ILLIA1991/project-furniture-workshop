@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ClientsConverter {
+public class ClientConverter {
 
     public Clients convertToEntity(ClientsDTO source) {
         return new Clients(source.getId(),

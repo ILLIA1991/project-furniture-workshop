@@ -8,15 +8,15 @@ import project.furnitureworkshop.demo.repository.model.OrderItem;
 import java.util.List;
 
 @Component
-public class OrdersItemsConverter {
+public class OrderItemConverter {
 
     private final FurnitureConverter furnitureConverter;
 
-    private final WoodSpeciesConverter woodSpeciesConverter;
+    private final WoodSpeccyConverter woodSpeccyConverter;
 
-    public OrdersItemsConverter(FurnitureConverter furnitureConverter, WoodSpeciesConverter woodSpeciesConverter) {
+    public OrderItemConverter(FurnitureConverter furnitureConverter, WoodSpeccyConverter woodSpeccyConverter) {
         this.furnitureConverter = furnitureConverter;
-        this.woodSpeciesConverter = woodSpeciesConverter;
+        this.woodSpeccyConverter = woodSpeccyConverter;
     }
 
     public List<OrderItemDTO> convertToDto(List<OrderItem> ordersItems) {
@@ -30,7 +30,7 @@ public class OrdersItemsConverter {
         result.setId(orderItem.getId());
         result.setOrder(result.getOrder());
         result.setFurniture(furnitureConverter.convertFurnitureToDto(orderItem.getFurniture()));
-        result.setWood(woodSpeciesConverter.convertWoosSpeciesToDto(orderItem.getWoodSpeccy()));
+        result.setWood(woodSpeccyConverter.convertWoosSpeciesToDto(orderItem.getWoodSpeccy()));
         result.setQuantity(orderItem.getQuantity());
         result.setPrice(orderItem.getPrice());
         return result;
@@ -47,7 +47,7 @@ public class OrdersItemsConverter {
         result.setId(source.getId());
         result.setOrder(order);
         result.setFurniture(furnitureConverter.convertToEntity(source.getFurniture()));
-        result.setWoodSpeccy(woodSpeciesConverter.convertToEntity(source.getWood()));
+        result.setWoodSpeccy(woodSpeccyConverter.convertToEntity(source.getWood()));
         result.setQuantity(source.getQuantity());
         result.setPrice(source.getPrice());
         return result;

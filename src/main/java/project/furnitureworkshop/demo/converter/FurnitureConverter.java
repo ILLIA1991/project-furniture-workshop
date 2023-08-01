@@ -15,7 +15,7 @@ public class FurnitureConverter {
         return new Furniture(source.getId(),
                 source.getName(),
                 source.getDescription(),
-                source.getMaterial_cube_meter());
+                source.getMaterialConsumption());
     }
 
     public FurnitureDTO convertToDto(Furniture source) {
@@ -33,7 +33,7 @@ public class FurnitureConverter {
         result.setId(source.getId());
         result.setName(source.getName());
         result.setDescription(source.getDescription());
-        result.setMaterial_cube_meter(source.getMaterial_cube_meter());
+        result.setMaterialConsumption(source.getMaterial_cube_meter());
         return result;
     }
 

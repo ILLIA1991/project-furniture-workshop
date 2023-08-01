@@ -13,12 +13,12 @@ public class OrderConverter {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderConverter.class);
 
-    private final ClientsConverter clientsConverter;
-    private final OrdersItemsConverter ordersItemsConverter;
+    private final ClientConverter clientConverter;
+    private final OrderItemConverter orderItemConverter;
 
-    public OrderConverter(ClientsConverter clientsConverter, OrdersItemsConverter ordersItemsConverter) {
-        this.clientsConverter = clientsConverter;
-        this.ordersItemsConverter = ordersItemsConverter;
+    public OrderConverter(ClientConverter clientConverter, OrderItemConverter orderItemConverter) {
+        this.clientConverter = clientConverter;
+        this.orderItemConverter = orderItemConverter;
     }
 
     public OrderDTO convertToDto(Order order) {
@@ -32,19 +32,19 @@ public class OrderConverter {
     }
     public Order convertToEntity(OrderDTO source) {
         Order result = new Order();
-        result.setClients(clientsConverter.convertToEntity(source.getClients()));
-        result.setOrdersItems(ordersItemsConverter.convertToEntity(source.getOrdersItems(), result));
-        result.setOrderDate(source.getDateOrder());
+        result.setClients(clientConverter.convertToEntity(source.getClients()));
+        result.setOrdersItems(orderItemConverter.convertToEntity(source.getOrdersItems(), result));
+        result.setOrderDate(source.getOrderDate());
         return result;
     }
 
     private OrderDTO convert(Order source) {
         OrderDTO target = new OrderDTO();
         target.setId(source.getId());
-        target.setClients(clientsConverter.convertToDto(source.getClients()));
-        target.setDateOrder(source.getOrderDate());
+        target.setClients(clientConverter.convertToDto(source.getClients()));
+        target.setOrderDate(source.getOrderDate());
         logger.debug("Now we will download the lines of the order....");
-        target.setOrdersItems(ordersItemsConverter.convertToDto(source.getOrdersItems()));
+        target.setOrdersItems(orderItemConverter.convertToDto(source.getOrdersItems()));
         return target;
     }
 }

@@ -3,6 +3,7 @@ package project.furnitureworkshop.demo.controller.dto;
 import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class FurnitureDTO implements Serializable {
@@ -12,7 +13,7 @@ public class FurnitureDTO implements Serializable {
     private String name;
     @NotBlank
     private String description;
-    private Double material_cube_meter;
+    private BigDecimal materialConsumption;
 
     public Integer getId() {
         return id;
@@ -38,12 +39,12 @@ public class FurnitureDTO implements Serializable {
         this.description = description;
     }
 
-    public Double getMaterial_cube_meter() {
-        return material_cube_meter;
+    public BigDecimal getMaterialConsumption() {
+        return materialConsumption;
     }
 
-    public void setMaterial_cube_meter(Double material_cube_meter) {
-        this.material_cube_meter = material_cube_meter;
+    public void setMaterialConsumption(BigDecimal materialConsumption) {
+        this.materialConsumption = materialConsumption;
     }
 
     @Override
@@ -51,12 +52,12 @@ public class FurnitureDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FurnitureDTO that = (FurnitureDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(material_cube_meter, that.material_cube_meter);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(materialConsumption, that.materialConsumption);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, material_cube_meter);
+        return Objects.hash(id, name, description, materialConsumption);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class FurnitureDTO implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", material_cube_meter=" + material_cube_meter +
+                ", material_cube_meter=" + materialConsumption +
                 '}';
     }
 }

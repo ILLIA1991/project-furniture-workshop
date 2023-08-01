@@ -3,7 +3,7 @@ package project.furnitureworkshop.demo.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.furnitureworkshop.demo.controller.dto.OrderItemDTO;
-import project.furnitureworkshop.demo.converter.OrdersItemsConverter;
+import project.furnitureworkshop.demo.converter.OrderItemConverter;
 import project.furnitureworkshop.demo.repository.OrderItemRepository;
 import project.furnitureworkshop.demo.repository.model.OrderItem;
 import project.furnitureworkshop.demo.service.OrderItemService;
@@ -14,18 +14,18 @@ import java.util.List;
 public class OrderItemServiceImpl implements OrderItemService {
 
     private final OrderItemRepository ordersItemsRepository;
-    private final OrdersItemsConverter ordersItemsConverter;
+    private final OrderItemConverter orderItemConverter;
 
-    public OrderItemServiceImpl(OrderItemRepository ordersItemsRepository, OrdersItemsConverter ordersItemsConverter) {
+    public OrderItemServiceImpl(OrderItemRepository ordersItemsRepository, OrderItemConverter orderItemConverter) {
         this.ordersItemsRepository = ordersItemsRepository;
-        this.ordersItemsConverter = ordersItemsConverter;
+        this.orderItemConverter = orderItemConverter;
     }
 
 
     @Override
     public List<OrderItemDTO> getAllOrdersItems() {
         List<OrderItem> all = ordersItemsRepository.findAll();
-        return ordersItemsConverter.convertToDto(all);
+        return orderItemConverter.convertToDto(all);
     }
 
     @Override

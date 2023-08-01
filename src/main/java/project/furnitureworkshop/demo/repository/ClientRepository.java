@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import project.furnitureworkshop.demo.repository.model.Clients;
 
 @Repository
-public interface ClientsRepository extends JpaRepository<Clients, Integer> {
+public interface ClientRepository extends JpaRepository<Clients, Integer> {
 
 
 }

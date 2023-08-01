@@ -9,7 +9,7 @@ public class OrderDTO {
 
     private Integer id;
     private ClientsDTO clients;
-    private Date dateOrder;
+    private Date orderDate;
     private List<OrderItemDTO> ordersItems = new ArrayList<>();
 
     public Integer getId() {
@@ -28,12 +28,12 @@ public class OrderDTO {
         this.clients = clients;
     }
 
-    public Date getDateOrder() {
-        return dateOrder;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setDateOrder(Date dateOrder) {
-        this.dateOrder = dateOrder;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public List<OrderItemDTO> getOrdersItems() {
@@ -49,12 +49,12 @@ public class OrderDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDTO orderDTO = (OrderDTO) o;
-        return Objects.equals(id, orderDTO.id) && Objects.equals(clients, orderDTO.clients) && Objects.equals(dateOrder, orderDTO.dateOrder) && Objects.equals(ordersItems, orderDTO.ordersItems);
+        return Objects.equals(id, orderDTO.id) && Objects.equals(clients, orderDTO.clients) && Objects.equals(orderDate, orderDTO.orderDate) && Objects.equals(ordersItems, orderDTO.ordersItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clients, dateOrder, ordersItems);
+        return Objects.hash(id, clients, orderDate, ordersItems);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class OrderDTO {
         return "OrderDTO{" +
                 "id=" + id +
                 ", clients=" + clients +
-                ", dateOrder=" + dateOrder +
+                ", dateOrder=" + orderDate +
                 ", ordersItems=" + ordersItems +
                 '}';
     }

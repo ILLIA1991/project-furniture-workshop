@@ -2,6 +2,8 @@ package project.furnitureworkshop.demo.repository.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "furniture")
 public class Furniture {
@@ -16,7 +18,7 @@ public class Furniture {
     @Column(name = "material_cube_meter")
     private Double material_cube_meter;
 
-    public Furniture() {
+    public Furniture(Integer id, String name, String description, BigDecimal materialConsumption) {
     }
 
     public Furniture(String name, String description, Double material_cube_meter) {
@@ -56,7 +58,7 @@ public class Furniture {
         this.description = description;
     }
 
-    public Double getMaterial_cube_meter() {
+    public BigDecimal getMaterial_cube_meter() {
         return material_cube_meter;
     }
 
