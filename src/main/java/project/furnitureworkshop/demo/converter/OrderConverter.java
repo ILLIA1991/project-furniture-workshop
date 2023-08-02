@@ -32,7 +32,7 @@ public class OrderConverter {
     }
     public Order convertToEntity(OrderDTO source) {
         Order result = new Order();
-        result.setClients(clientConverter.convertToEntity(source.getClients()));
+        result.setClients(clientConverter.convertToEntity(source.getClient()));
         result.setOrdersItems(orderItemConverter.convertToEntity(source.getOrdersItems(), result));
         result.setOrderDate(source.getOrderDate());
         return result;
@@ -41,7 +41,7 @@ public class OrderConverter {
     private OrderDTO convert(Order source) {
         OrderDTO target = new OrderDTO();
         target.setId(source.getId());
-        target.setClients(clientConverter.convertToDto(source.getClients()));
+        target.setClient(clientConverter.convertToDto(source.getClients()));
         target.setOrderDate(source.getOrderDate());
         logger.debug("Now we will download the lines of the order....");
         target.setOrdersItems(orderItemConverter.convertToDto(source.getOrdersItems()));

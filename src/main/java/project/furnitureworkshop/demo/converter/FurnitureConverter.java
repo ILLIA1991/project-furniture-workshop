@@ -33,7 +33,7 @@ public class FurnitureConverter {
         result.setId(source.getId());
         result.setName(source.getName());
         result.setDescription(source.getDescription());
-        result.setMaterialConsumption(source.getMaterial_cube_meter());
+        result.setMaterialConsumption(source.getMaterialConsumption());
         return result;
     }
 

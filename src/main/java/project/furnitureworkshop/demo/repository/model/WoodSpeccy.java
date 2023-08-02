@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "wood_species")
-public class Wood_Species {
+public class WoodSpeccy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +20,13 @@ public class Wood_Species {
 
 
 
-    public Wood_Species(String woodType, String hardness, BigDecimal cubicMeterPrice) {
+    public WoodSpeccy(String woodType, String hardness, BigDecimal cubicMeterPrice) {
         this.woodType = woodType;
         this.hardness = hardness;
         this.cubicMeterPrice = cubicMeterPrice;
     }
 
-    public Wood_Species(Integer id, String woodType, String hardness, BigDecimal cubicMeterPrice) {
+    public WoodSpeccy(Integer id, String woodType, String hardness, BigDecimal cubicMeterPrice) {
         this.id = id;
         this.woodType = woodType;
         this.hardness = hardness;
@@ -67,7 +67,7 @@ public class Wood_Species {
 
     @Override
     public String toString() {
-        return "Wood_Species{" +
+        return "WoodSpeccy{" +
                 "id=" + id +
                 ", type_of_wood='" + woodType + '\'' +
                 ", hardness='" + hardness + '\'' +

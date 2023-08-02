@@ -8,12 +8,7 @@ import project.furnitureworkshop.demo.exception.ValidationException;
 public class FurnitureValidator {
 
     public void validateFurniture(FurnitureDTO furnitureDTO) {
-        if (furnitureDTO.getName().contains("$")) {
-            throw new ValidationException("not found name");
-        }
-        if (furnitureDTO.getDescription().contains("$")) {
-            throw new ValidationException("Not found description");
-        }
+
     }
 
 }

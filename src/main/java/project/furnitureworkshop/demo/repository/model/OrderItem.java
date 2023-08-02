@@ -19,7 +19,7 @@ public class OrderItem {
     private Furniture furniture;
     @JoinColumn
     @ManyToOne
-    private  Wood_Species woodSpeccy;
+    private WoodSpeccy woodSpeccy;
     @Column(name = "quantity")
     private Integer quantity;
     @Column(name = "price")
@@ -57,11 +57,11 @@ public class OrderItem {
         this.furniture = furniture;
     }
 
-    public Wood_Species getWoodSpeccy() {
+    public WoodSpeccy getWoodSpeccy() {
         return woodSpeccy;
     }
 
-    public void setWoodSpeccy(Wood_Species woodSpeccy) {
+    public void setWoodSpeccy(WoodSpeccy woodSpeccy) {
         this.woodSpeccy = woodSpeccy;
     }
 

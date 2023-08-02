@@ -1,25 +1,21 @@
 package project.furnitureworkshop.demo.controller.dto;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
 import java.util.Objects;
 
-public class ClientsDTO {
+public class ClientDTO {
 
     private Integer id;
 
-    @NotBlank
+
     private String name;
 
-    @NotBlank
+
     private String surname;
 
-    @Email
+
     private String email;
 
-    @Digits(integer = 20, fraction = 0)
+
     private String phone;
 
     public Integer getId() {
@@ -66,8 +62,8 @@ public class ClientsDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientsDTO clientsDTO = (ClientsDTO) o;
-        return Objects.equals(id, clientsDTO.id) && Objects.equals(name, clientsDTO.name) && Objects.equals(surname, clientsDTO.surname) && Objects.equals(email, clientsDTO.email) && Objects.equals(phone, clientsDTO.phone);
+        ClientDTO clientDTO = (ClientDTO) o;
+        return Objects.equals(id, clientDTO.id) && Objects.equals(name, clientDTO.name) && Objects.equals(surname, clientDTO.surname) && Objects.equals(email, clientDTO.email) && Objects.equals(phone, clientDTO.phone);
     }
 
     @Override
@@ -77,7 +73,7 @@ public class ClientsDTO {
 
     @Override
     public String toString() {
-        return "ClientsDTO{" +
+        return "ClientDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

@@ -28,7 +28,7 @@ public class FurnitureController {
     }
 
     @PostMapping
-    public Integer createFurniture(@RequestBody @Valid FurnitureDTO furnitureToCreate) {
+    public Integer createFurniture(@RequestBody  FurnitureDTO furnitureToCreate) {
         return furnitureService.createFurniture(furnitureToCreate);
     }
 
@@ -38,7 +38,7 @@ public class FurnitureController {
     }
 
     @PutMapping("/{id}")
-    public FurnitureDTO update(@PathVariable Integer id, @RequestBody @Valid FurnitureDTO furnitureToUpdate) {
+    public FurnitureDTO update(@PathVariable Integer id, @RequestBody  FurnitureDTO furnitureToUpdate) {
         return furnitureService.updateFurniture(id, furnitureToUpdate);
     }
 

@@ -25,15 +25,15 @@ public class WoodSpeccyController {
         return woodSpeccyService.getById(id);
     }
     @PostMapping
-    public Integer createWoodSpecies(@RequestBody @Valid WoodSpeccyDTO woodSpeciesToCreate) {
-        return woodSpeccyService.createWoosSpecies(woodSpeciesToCreate);
+    public Integer createWoodSpecies(@RequestBody WoodSpeccyDTO woodSpeciesToCreate) {
+        return woodSpeccyService.createWoodSpeccy(woodSpeciesToCreate);
     }
     @DeleteMapping("/{id}")
     public void deleteWoodSpecies(@PathVariable Integer id) {
-        woodSpeccyService.deleteWoodSpecies(id);
+        woodSpeccyService.deleteWoodSpeccy(id);
     }
     @PutMapping("/{id}")
-    public WoodSpeccyDTO update(@PathVariable Integer id, @RequestBody @Valid WoodSpeccyDTO woodSpeciesToUpdate) {
+    public WoodSpeccyDTO update(@PathVariable Integer id, @RequestBody  WoodSpeccyDTO woodSpeciesToUpdate) {
         return woodSpeccyService.updateWoodSpeccy(id, woodSpeciesToUpdate);
     }
 }

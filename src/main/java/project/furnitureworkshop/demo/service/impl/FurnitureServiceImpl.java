@@ -45,7 +45,6 @@ public class FurnitureServiceImpl implements FurnitureService {
     @Override
     @Transactional
     public Integer createFurniture(FurnitureDTO furnitureToCreate) {
-        furnitureValidator.validateFurniture(furnitureToCreate);
         Furniture furniture = furnitureConverter.convertToEntity(furnitureToCreate);
         Furniture saveFurniture = furnitureRepository.save(furniture);
         return saveFurniture.getId();

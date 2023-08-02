@@ -28,7 +28,6 @@ public class OrderItemConverter {
     private OrderItemDTO convertToDto(OrderItem orderItem) {
         OrderItemDTO result = new OrderItemDTO();
         result.setId(orderItem.getId());
-        result.setOrder(result.getOrder());
         result.setFurniture(furnitureConverter.convertFurnitureToDto(orderItem.getFurniture()));
         result.setWood(woodSpeccyConverter.convertWoosSpeciesToDto(orderItem.getWoodSpeccy()));
         result.setQuantity(orderItem.getQuantity());
@@ -45,7 +44,6 @@ public class OrderItemConverter {
     private OrderItem convertToEntity(OrderItemDTO source, Order order) {
         OrderItem result = new OrderItem();
         result.setId(source.getId());
-        result.setOrder(order);
         result.setFurniture(furnitureConverter.convertToEntity(source.getFurniture()));
         result.setWoodSpeccy(woodSpeccyConverter.convertToEntity(source.getWood()));
         result.setQuantity(source.getQuantity());

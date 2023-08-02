@@ -2,11 +2,11 @@ package project.furnitureworkshop.demo.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
+import project.furnitureworkshop.demo.controller.dto.ClientDTO;
 import project.furnitureworkshop.demo.converter.ClientConverter;
 import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundException;
 import project.furnitureworkshop.demo.repository.ClientRepository;
-import project.furnitureworkshop.demo.repository.model.Clients;
+import project.furnitureworkshop.demo.repository.model.Client;
 import project.furnitureworkshop.demo.service.ClientService;
 import project.furnitureworkshop.demo.validator.ClientValidator;
 
@@ -30,40 +30,39 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<ClientsDTO> getAllClients() {
-        Collection<Clients> all = clientRepository.findAll();
+    public List<ClientDTO> getAllClients() {
+        Collection<Client> all = clientRepository.findAll();
         return clientConverter.convertToDto(all);
     }
 
     @Override
-    public ClientsDTO getById(Integer id) {
-        Clients clients = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
-        return clientConverter.convertToDto(clients);
+    public ClientDTO getById(Integer id) {
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
+        return clientConverter.convertToDto(client);
     }
 
     @Override
     @Transactional
-    public Integer createClient(ClientsDTO clientsToCreate) {
-        clientValidator.validateClients(clientsToCreate);
-        Clients clients = clientConverter.convertToEntity(clientsToCreate);
-        Clients savedClients = clientRepository.save(clients);
-        return savedClients.getId();
+    public Integer createClient(ClientDTO clientsToCreate) {
+        Client client = clientConverter.convertToEntity(clientsToCreate);
+        Client savedClient = clientRepository.save(client);
+        return savedClient.getId();
 
     }
 
     @Override
     public void deleteById(Integer id) {
-        Clients clients = clientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("You're not with us anymore!:" + id));
-        clientRepository.delete(clients);
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("You're not with us anymore!:" + id));
+        clientRepository.delete(client);
     }
 
     @Override
     @Transactional
-    public ClientsDTO updateClient(Integer id, ClientsDTO clientsToUpdate) {
-        Clients clients = clientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Client not found:" + id));
-        Clients entityToUpdate = clientConverter.convertToEntity(clientsToUpdate);
+    public ClientDTO updateClient(Integer id, ClientDTO clientsToUpdate) {
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
+        Client entityToUpdate = clientConverter.convertToEntity(clientsToUpdate);
         entityToUpdate.setId(id);
-        Clients updatedEntity = clientRepository.save(entityToUpdate);
+        Client updatedEntity = clientRepository.save(entityToUpdate);
         return clientConverter.convertToDto(updatedEntity);
     }
 }

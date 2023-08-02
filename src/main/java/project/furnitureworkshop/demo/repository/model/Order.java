@@ -15,7 +15,7 @@ public class Order {
     private Integer id;
     @JoinColumn
     @ManyToOne
-    private Clients clients;
+    private Client client;
 
     @Column(name = "date_order")
     private Date orderDate;
@@ -37,12 +37,12 @@ public class Order {
         this.id = id;
     }
 
-    public Clients getClients() {
-        return clients;
+    public Client getClients() {
+        return client;
     }
 
-    public void setClients(Clients clients) {
-        this.clients = clients;
+    public void setClients(Client client) {
+        this.client = client;
     }
 
     public Date getOrderDate() {

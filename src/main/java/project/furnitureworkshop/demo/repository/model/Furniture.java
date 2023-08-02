@@ -16,23 +16,32 @@ public class Furniture {
     @Column(name = "description")
     private String description;
     @Column(name = "material_cube_meter")
-    private Double material_cube_meter;
+    private BigDecimal materialConsumption;
 
-    public Furniture(Integer id, String name, String description, BigDecimal materialConsumption) {
+    public BigDecimal getMaterialConsumption() {
+        return materialConsumption;
     }
 
-    public Furniture(String name, String description, Double material_cube_meter) {
+    public void setMaterialConsumption(BigDecimal materialConsumption) {
+        this.materialConsumption = materialConsumption;
+    }
+
+
+
+    public Furniture(String name, String description, BigDecimal materialConsumption) {
         this.name = name;
         this.description = description;
-        this.material_cube_meter = material_cube_meter;
+        this.materialConsumption = materialConsumption;
     }
 
-    public Furniture(Integer id, String name, String description, Double material_cube_meter) {
+    public Furniture(Integer id, String name, String description, BigDecimal materialConsumption) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.material_cube_meter = material_cube_meter;
+        this.materialConsumption = materialConsumption;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -58,13 +67,7 @@ public class Furniture {
         this.description = description;
     }
 
-    public BigDecimal getMaterial_cube_meter() {
-        return material_cube_meter;
-    }
 
-    public void setMaterial_cube_meter(Double material_cube_meter) {
-        this.material_cube_meter = material_cube_meter;
-    }
 
     @Override
     public String toString() {
@@ -72,7 +75,7 @@ public class Furniture {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", material_cube_meter=" + material_cube_meter +
+                ", materialConsumption=" + materialConsumption +
                 '}';
     }
 }

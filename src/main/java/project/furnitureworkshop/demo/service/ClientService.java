@@ -1,19 +1,19 @@
 package project.furnitureworkshop.demo.service;
 
-import project.furnitureworkshop.demo.controller.dto.ClientsDTO;
+import project.furnitureworkshop.demo.controller.dto.ClientDTO;
 
 import java.util.List;
 
 public interface ClientService {
 
-    List<ClientsDTO> getAllClients();
+    List<ClientDTO> getAllClients();
 
-    ClientsDTO getById(Integer id);
+    ClientDTO getById(Integer id);
 
-    Integer createClient(ClientsDTO clientsDTO);
+    Integer createClient(ClientDTO clientDTO);
 
     void deleteById(Integer id);
 
-    ClientsDTO updateClient(Integer id, ClientsDTO clientsToUpdate);
+    ClientDTO updateClient(Integer id, ClientDTO clientsToUpdate);
 
 }

@@ -10,9 +10,9 @@ public interface WoodSpeccyService {
 
     WoodSpeccyDTO getById(Integer id);
 
-    Integer createWoosSpecies(WoodSpeccyDTO woodSpeciesToCreate);
+    Integer createWoodSpeccy(WoodSpeccyDTO woodSpeciesToCreate);
 
-    void deleteWoodSpecies(Integer id);
+    void deleteWoodSpeccy(Integer id);
 
     WoodSpeccyDTO updateWoodSpeccy(Integer id, WoodSpeccyDTO woodSpeciesToUpdate);
 

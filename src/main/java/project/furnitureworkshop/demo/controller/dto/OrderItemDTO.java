@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 public class OrderItemDTO {
 
     private Integer id;
-    private OrderDTO order;
     private FurnitureDTO furniture;
     private WoodSpeccyDTO wood;
     private Integer quantity;
@@ -19,13 +18,6 @@ public class OrderItemDTO {
         this.id = id;
     }
 
-    public OrderDTO getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderDTO order) {
-        this.order = order;
-    }
 
     public FurnitureDTO getFurniture() {
         return furniture;

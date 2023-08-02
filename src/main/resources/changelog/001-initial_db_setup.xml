@@ -14,7 +14,7 @@
         </createTable>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-2">
-        <createTable tableName="clients">
+        <createTable tableName="client">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="clients_pkey"/>
             </column>
@@ -83,10 +83,10 @@
         </createTable>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-6">
-        <addUniqueConstraint columnNames="email" constraintName="email_unq" tableName="clients"/>
+        <addUniqueConstraint columnNames="email" constraintName="email_unq" tableName="client"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-7">
-        <addUniqueConstraint columnNames="phone" constraintName="phone_unq" tableName="clients"/>
+        <addUniqueConstraint columnNames="phone" constraintName="phone_unq" tableName="client"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-8">
         <addUniqueConstraint columnNames="name" constraintName="name_unq" tableName="furniture"/>
@@ -101,7 +101,7 @@
         <addUniqueConstraint columnNames="type_of_wood" constraintName="type_of_wood_unq" tableName="wood_species"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-12">
-        <addForeignKeyConstraint baseColumnNames="clients_id" baseTableName="order" constraintName="clients_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="clients" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="clients_id" baseTableName="order" constraintName="clients_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-13">
         <addForeignKeyConstraint baseColumnNames="wood_id" baseTableName="orders_items" constraintName="wood_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="wood_species" validate="true"/>
