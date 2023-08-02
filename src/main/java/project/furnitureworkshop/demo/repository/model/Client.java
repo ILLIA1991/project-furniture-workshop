@@ -1,10 +1,10 @@
-package project.furnitureworkshop.demo.repository;
+package project.furnitureworkshop.demo.repository.model;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "clients")
-public class Clients {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class Clients {
     @Column(name = "phone")
     private String phone;
 
-    public Clients() {
+    public Client() {
     }
 
-    public Clients(Integer id, String name, String surname, String email, String phone) {
+    public Client(Integer id, String name, String surname, String email, String phone) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -75,7 +75,7 @@ public class Clients {
 
     @Override
     public String toString() {
-        return "Clients{" +
+        return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

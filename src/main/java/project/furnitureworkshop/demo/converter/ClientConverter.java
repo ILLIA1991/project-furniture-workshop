@@ -1,36 +1,36 @@
 package project.furnitureworkshop.demo.converter;
 
 import org.springframework.stereotype.Component;
-import project.furnitureworkshop.demo.controller.ClientsDTO;
-import project.furnitureworkshop.demo.repository.Clients;
+import project.furnitureworkshop.demo.controller.dto.ClientDTO;
+import project.furnitureworkshop.demo.repository.model.Client;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ClientsConverter {
+public class ClientConverter {
 
-    public Clients convertToEntity(ClientsDTO source) {
-        return new Clients(source.getId(),
+    public Client convertToEntity(ClientDTO source) {
+        return new Client(source.getId(),
                 source.getName(),
                 source.getSurname(),
                 source.getEmail(),
                 source.getPhone());
     }
 
-    public ClientsDTO convertToDto(Clients source) {
+    public ClientDTO convertToDto(Client source) {
         return convertClientsToDto(source);
     }
 
-    public List<ClientsDTO> convertToDto(Collection<Clients> source) {
+    public List<ClientDTO> convertToDto(Collection<Client> source) {
         return source.stream()
                 .map(this::convertClientsToDto)
                 .collect(Collectors.toList());
     }
 
-    private ClientsDTO convertClientsToDto(Clients source) {
-        ClientsDTO result = new ClientsDTO();
+    private ClientDTO convertClientsToDto(Client source) {
+        ClientDTO result = new ClientDTO();
         result.setId(source.getId());
         result.setName(source.getName());
         result.setSurname(source.getSurname());

@@ -1,8 +1,13 @@
 package project.furnitureworkshop.demo.exception;
 
-public class ValidationException  extends RuntimeException {
+import java.util.List;
 
-    public ValidationException(String message) {
+public class ValidationException extends RuntimeException {
+
+    private final List<String> violations;
+
+    public ValidationException(String message, List<String> violations) {
         super(message);
+        this.violations = violations;
     }
 }
