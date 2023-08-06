@@ -18,10 +18,12 @@ public class FurnitureWorkshopExceptionHandler {
     public ResponseEntity<String> handleNotFoundException(FurnitureWorkshopNotFoundException e) {
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return ResponseEntity.status(BAD_REQUEST).body(e.getMessage());
     }
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<String> handleValidationException(ValidationException e) {
         return ResponseEntity.status(BAD_REQUEST).body(e.getMessage());

@@ -11,6 +11,7 @@ import project.furnitureworkshop.demo.service.WoodSpeccyService;
 import project.furnitureworkshop.demo.validator.WoodSpeccyValidator;
 
 import java.util.Collection;
+
 @Service
 @Transactional(readOnly = true)
 public class WoodSpeccyServiceImpl implements WoodSpeccyService {
@@ -20,7 +21,6 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     private final WoodSpeccyConverter woodSpeccyConverter;
 
     private final WoodSpeccyValidator woodSpeccyValidator;
-
 
 
     public WoodSpeccyServiceImpl(WoodSpeccyRepository woodSpeciesRepository, WoodSpeccyConverter woodSpeccyConverter, WoodSpeccyValidator woodSpeccyValidator) {
@@ -44,8 +44,9 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     @Override
     @Transactional
     public Integer createWoodSpeccy(WoodSpeccyDTO woodSpeciesToCreate) {
+        woodSpeccyValidator.validateWoodSpeccy(woodSpeciesToCreate);
         WoodSpeccy woodSpecies = woodSpeccyConverter.convertToEntity(woodSpeciesToCreate);
-        WoodSpeccy saveWoodSpecies =  woodSpeciesRepository.save(woodSpecies);
+        WoodSpeccy saveWoodSpecies = woodSpeciesRepository.save(woodSpecies);
         return saveWoodSpecies.getId();
     }
 

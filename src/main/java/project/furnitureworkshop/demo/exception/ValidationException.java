@@ -10,4 +10,11 @@ public class ValidationException extends RuntimeException {
         super(message);
         this.violations = violations;
     }
+
+    @Override
+    public String toString() {
+        return getMessage() + "{" +
+                "violations=" + violations +
+                '}';
+    }
 }

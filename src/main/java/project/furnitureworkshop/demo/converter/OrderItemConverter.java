@@ -37,7 +37,7 @@ public class OrderItemConverter {
 
     public List<OrderItem> convertToEntity(List<OrderItemDTO> ordersItems, Order order) {
         return ordersItems.stream()
-                .map(item -> convertToEntity(item,order))
+                .map(item -> convertToEntity(item, order))
                 .toList();
     }
 

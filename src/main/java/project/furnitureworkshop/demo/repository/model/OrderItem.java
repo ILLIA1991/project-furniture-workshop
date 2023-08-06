@@ -11,14 +11,17 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JoinColumn
+
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
-    @JoinColumn
+
     @ManyToOne
+    @JoinColumn(name = "furniture_id")
     private Furniture furniture;
-    @JoinColumn
+
     @ManyToOne
+    @JoinColumn(name = "wood_id")
     private WoodSpeccy woodSpeccy;
     @Column(name = "quantity")
     private Integer quantity;

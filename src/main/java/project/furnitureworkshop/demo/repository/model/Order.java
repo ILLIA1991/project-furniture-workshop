@@ -13,8 +13,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JoinColumn
+
     @ManyToOne
+    @JoinColumn(name = "client")
     private Client client;
 
     @Column(name = "date_order")
@@ -28,6 +29,22 @@ public class Order {
 
     )
     private List<OrderItem> ordersItems = new ArrayList<>();
+
+    public Order() {
+    }
+
+    public Order(Client client, Date orderDate, List<OrderItem> ordersItems) {
+        this.client = client;
+        this.orderDate = orderDate;
+        this.ordersItems = ordersItems;
+    }
+
+    public Order(Integer id, Client client, Date orderDate, List<OrderItem> ordersItems) {
+        this.id = id;
+        this.client = client;
+        this.orderDate = orderDate;
+        this.ordersItems = ordersItems;
+    }
 
     public Integer getId() {
         return id;

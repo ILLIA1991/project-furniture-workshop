@@ -1,6 +1,5 @@
 package project.furnitureworkshop.demo.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import project.furnitureworkshop.demo.controller.dto.FurnitureDTO;
 import project.furnitureworkshop.demo.service.FurnitureService;
@@ -28,7 +27,7 @@ public class FurnitureController {
     }
 
     @PostMapping
-    public Integer createFurniture(@RequestBody  FurnitureDTO furnitureToCreate) {
+    public Integer createFurniture(@RequestBody FurnitureDTO furnitureToCreate) {
         return furnitureService.createFurniture(furnitureToCreate);
     }
 
@@ -38,7 +37,7 @@ public class FurnitureController {
     }
 
     @PutMapping("/{id}")
-    public FurnitureDTO update(@PathVariable Integer id, @RequestBody  FurnitureDTO furnitureToUpdate) {
+    public FurnitureDTO update(@PathVariable Integer id, @RequestBody FurnitureDTO furnitureToUpdate) {
         return furnitureService.updateFurniture(id, furnitureToUpdate);
     }
 
