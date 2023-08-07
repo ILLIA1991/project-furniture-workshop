@@ -19,14 +19,14 @@ WoodSpeccyDTO
     cubicMeterPrice - не null и > BigDecimal.ZERO                          (ГОТОВО)
 
 OrderDTO
-    - client  - client.getId() != null
-    - orderDate - != null
-    - orderItems  - не пустой массив
+    - client  - client.getId() != null                                     (ГОТОВО)
+    - orderDate - != null                                                  (ГОТОВО)
+    - orderItems  - не пустой массив                                        (ГОТОВО)
     OrderItemDTO
-        - furniture - furniture.getId() != null
-        - wood  - wood.getId() != null
-        - quantity != null, > 0
-        - price != null, > BigDecimal.ZERO
+        - furniture - furniture.getId() != null                              (ГОТОВО)
+        - wood  - wood.getId() != null                                        (ГОТОВО)
+        - quantity != null, > 0                                               (ГОТОВО)
+        - price != null, > BigDecimal.ZERO                                    (ГОТОВО)
 
 
 создать эндпоинт для предварительного расчета цены.
