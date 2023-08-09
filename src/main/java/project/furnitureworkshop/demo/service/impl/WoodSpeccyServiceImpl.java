@@ -53,7 +53,7 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     @Override
     @Transactional
     public void deleteWoodSpeccy(Integer id) {
-        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Wood species not found:" + id));
+        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood species not found:" + id));
         woodSpeciesRepository.delete(woodSpecies);
 
     }
@@ -61,7 +61,8 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     @Override
     @Transactional
     public WoodSpeccyDTO updateWoodSpeccy(Integer id, WoodSpeccyDTO woodSpeciesToUpdate) {
-        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Wood species not found:" + id));
+        woodSpeccyValidator.validateWoodSpeccy(woodSpeciesToUpdate);
+        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood species not found:" + id));
         WoodSpeccy entityToUpdate = woodSpeccyConverter.convertToEntity(woodSpeciesToUpdate);
         entityToUpdate.setId(id);
         WoodSpeccy updateEntity = woodSpeciesRepository.save(entityToUpdate);

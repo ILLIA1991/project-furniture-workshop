@@ -21,15 +21,6 @@ public class Furniture {
     public Furniture() {
     }
 
-    public BigDecimal getMaterialConsumption() {
-        return materialConsumption;
-    }
-
-    public void setMaterialConsumption(BigDecimal materialConsumption) {
-        this.materialConsumption = materialConsumption;
-    }
-
-
     public Furniture(String name, String description, BigDecimal materialConsumption) {
         this.name = name;
         this.description = description;
@@ -66,6 +57,15 @@ public class Furniture {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public BigDecimal getMaterialConsumption() {
+        return materialConsumption;
+    }
+
+    public void setMaterialConsumption(BigDecimal materialConsumption) {
+        this.materialConsumption = materialConsumption;
     }
 
 

@@ -60,6 +60,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public ClientDTO updateClient(Integer id, ClientDTO clientsToUpdate) {
+        clientValidator.validateClient(clientsToUpdate);
         Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
         Client entityToUpdate = clientConverter.convertToEntity(clientsToUpdate);
         entityToUpdate.setId(id);

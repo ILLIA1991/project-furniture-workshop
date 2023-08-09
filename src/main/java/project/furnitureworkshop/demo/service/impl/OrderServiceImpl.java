@@ -8,6 +8,7 @@ import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundExcepti
 import project.furnitureworkshop.demo.repository.OrderRepository;
 import project.furnitureworkshop.demo.repository.model.Order;
 import project.furnitureworkshop.demo.service.OrderService;
+import project.furnitureworkshop.demo.validator.OrderValidator;
 
 import java.util.List;
 
@@ -18,9 +19,12 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderConverter orderConverter;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderConverter orderConverter) {
+    private final OrderValidator orderValidator;
+
+    public OrderServiceImpl(OrderRepository orderRepository, OrderConverter orderConverter, OrderValidator orderValidator) {
         this.orderRepository = orderRepository;
         this.orderConverter = orderConverter;
+        this.orderValidator = orderValidator;
     }
 
     @Override
@@ -32,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public Integer createOrder(OrderDTO orderToCreate) {
+        orderValidator.validateOrder(orderToCreate);
         Order order = orderConverter.convertToEntity(orderToCreate);
         Order saveOrder = orderRepository.save(order);
         return saveOrder.getId();
@@ -40,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public void deleteOrder(Integer orderId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found:" + orderId));
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Order not found:" + orderId));
         orderRepository.delete(order);
 
     }

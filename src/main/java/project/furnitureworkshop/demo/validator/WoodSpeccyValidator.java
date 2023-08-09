@@ -40,7 +40,7 @@ public class WoodSpeccyValidator {
         }
     }
 
-    private static void validateCubicMeterPrice(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
+    public static void validateCubicMeterPrice(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
         if (woodSpeccyDTO.getCubicMeterPrice() == null) {
             violations.add("Price is null");
         } else if (woodSpeccyDTO.getCubicMeterPrice().compareTo(BigDecimal.ZERO) <= 0) {
@@ -49,7 +49,7 @@ public class WoodSpeccyValidator {
 
     }
 
-    private static void validateHardness(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
+    public static void validateHardness(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
         if (HardnessOfWood.findByValue(woodSpeccyDTO.getHardness()) == null) {
             violations.add(String.format("%s invalid wood speccy at system", woodSpeccyDTO.getHardness()));
         }
