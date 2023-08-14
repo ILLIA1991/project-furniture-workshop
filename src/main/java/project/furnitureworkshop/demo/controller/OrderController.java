@@ -9,7 +9,7 @@ import project.furnitureworkshop.demo.service.OrderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -22,7 +22,7 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public OrderDTO getById(@PathVariable Integer id) {
-        logger.trace(String.format("requested order# $s", id));
+        logger.trace(String.format("requested orders# $s", id));
         return orderService.getById(id);
     }
 

@@ -6,23 +6,23 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Order")
-@Table(name = "order")
-public class Order {
+@Entity(name = "Orders")
+@Table(name = "orders")
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "client")
+    @JoinColumn(name = "clients_id")
     private Client client;
 
     @Column(name = "date_order")
     private Date orderDate;
 
     @OneToMany(
-            mappedBy = "order",
+            mappedBy = "orders",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER
@@ -30,16 +30,16 @@ public class Order {
     )
     private List<OrderItem> ordersItems = new ArrayList<>();
 
-    public Order() {
+    public Orders() {
     }
 
-    public Order(Client client, Date orderDate, List<OrderItem> ordersItems) {
+    public Orders(Client client, Date orderDate, List<OrderItem> ordersItems) {
         this.client = client;
         this.orderDate = orderDate;
         this.ordersItems = ordersItems;
     }
 
-    public Order(Integer id, Client client, Date orderDate, List<OrderItem> ordersItems) {
+    public Orders(Integer id, Client client, Date orderDate, List<OrderItem> ordersItems) {
         this.id = id;
         this.client = client;
         this.orderDate = orderDate;

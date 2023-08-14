@@ -52,7 +52,7 @@ public class OrderValidator {
 
     private void validateOderItem(List<OrderItemDTO> orderItemDTO, List<String> violations) {
         if (orderItemDTO == null || orderItemDTO.isEmpty()) {
-            violations.add("Order item is null or empty");
+            violations.add("Orders item is null or empty");
             validateFurnitureId((OrderItemDTO) orderItemDTO, violations);
             validateWoodId((OrderItemDTO) orderItemDTO, violations);
             validateQuantity((OrderItemDTO) orderItemDTO, violations);

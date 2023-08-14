@@ -6,7 +6,7 @@ import project.furnitureworkshop.demo.controller.dto.OrderDTO;
 import project.furnitureworkshop.demo.converter.OrderConverter;
 import project.furnitureworkshop.demo.exception.FurnitureWorkshopNotFoundException;
 import project.furnitureworkshop.demo.repository.OrderRepository;
-import project.furnitureworkshop.demo.repository.model.Order;
+import project.furnitureworkshop.demo.repository.model.Orders;
 import project.furnitureworkshop.demo.service.OrderService;
 import project.furnitureworkshop.demo.validator.OrderValidator;
 
@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> getAll() {
-        List<Order> all = orderRepository.findAll();
+        List<Orders> all = orderRepository.findAll();
         return orderConverter.convertToDto(all);
     }
 
@@ -37,22 +37,22 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public Integer createOrder(OrderDTO orderToCreate) {
         orderValidator.validateOrder(orderToCreate);
-        Order order = orderConverter.convertToEntity(orderToCreate);
-        Order saveOrder = orderRepository.save(order);
-        return saveOrder.getId();
+        Orders orders = orderConverter.convertToEntity(orderToCreate);
+        Orders saveOrders = orderRepository.save(orders);
+        return saveOrders.getId();
     }
 
     @Override
     @Transactional
     public void deleteOrder(Integer orderId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Order not found:" + orderId));
-        orderRepository.delete(order);
+        Orders orders = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Orders not found:" + orderId));
+        orderRepository.delete(orders);
 
     }
 
     @Override
     public OrderDTO getById(Integer orderId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Not found order:" + orderId));
-        return orderConverter.convertToDto(order);
+        Orders orders = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Not found orders:" + orderId));
+        return orderConverter.convertToDto(orders);
     }
 }
