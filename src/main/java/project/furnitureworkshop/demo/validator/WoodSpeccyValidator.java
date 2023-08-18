@@ -40,7 +40,7 @@ public class WoodSpeccyValidator {
         }
     }
 
-    public static void validateCubicMeterPrice(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
+    public void validateCubicMeterPrice(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
         if (woodSpeccyDTO.getCubicMeterPrice() == null) {
             violations.add("Price is null");
         } else if (woodSpeccyDTO.getCubicMeterPrice().compareTo(BigDecimal.ZERO) <= 0) {
@@ -49,14 +49,14 @@ public class WoodSpeccyValidator {
 
     }
 
-    public static void validateHardness(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
+    public void validateHardness(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
         if (HardnessOfWood.findByValue(woodSpeccyDTO.getHardness()) == null) {
             violations.add(String.format("%s invalid wood speccy at system", woodSpeccyDTO.getHardness()));
         }
     }
 
 
-    private static void validateLetterField(String value, List<String> violations) {
+    private void validateLetterField(String value, List<String> violations) {
 
         if (isBlank(value)) {
             violations.add(String.format("%s can contain only letters: %s", "type_of_wood", value));

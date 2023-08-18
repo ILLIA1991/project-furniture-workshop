@@ -50,15 +50,19 @@ public class OrderValidator {
     }
 
 
-    private void validateOderItem(List<OrderItemDTO> orderItemDTO, List<String> violations) {
-        if (orderItemDTO == null || orderItemDTO.isEmpty()) {
-            violations.add("Orders item is null or empty");
-            validateFurnitureId((OrderItemDTO) orderItemDTO, violations);
-            validateWoodId((OrderItemDTO) orderItemDTO, violations);
-            validateQuantity((OrderItemDTO) orderItemDTO, violations);
-            validatePrice((OrderItemDTO) orderItemDTO, violations);
-            //не уверен что это правильная валидация на orderitem - не пустой массив
+    private void validateOderItem(List<OrderItemDTO> orderItems, List<String> violations) {
+        if (orderItems == null || orderItems.isEmpty()) {
+            violations.add("Order item is null or empty");
+        } else {
+            orderItems.forEach(orderItemDTO -> validateOrderItem(orderItemDTO, violations));
         }
+    }
+
+    private void validateOrderItem(OrderItemDTO orderItemDTO, List<String> violations) {
+        validatePrice(orderItemDTO, violations);
+        validateWoodId(orderItemDTO, violations);
+        validateFurnitureId(orderItemDTO, violations);
+        validateQuantity(orderItemDTO, violations);
     }
 
     private void validatePrice(OrderItemDTO orderItemDTO, List<String> violations) {
