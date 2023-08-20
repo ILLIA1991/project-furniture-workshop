@@ -22,7 +22,7 @@ public class FurnitureValidator {
         validateName(furnitureDTO, violations);
         validateMaterialConsumption(furnitureDTO, violations);
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided furniture is invalid", violations);
+            throw new ValidationException("Provided furniture is invalid");
         }
 
     }

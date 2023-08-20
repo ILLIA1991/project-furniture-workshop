@@ -68,15 +68,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public BigDecimal calculateTotalPrice(Integer furnitureId, Integer woodId, Integer quantity) {
-        Furniture furniture = furnitureRepository.findById(furnitureId).orElse(null);
-        WoodSpeccy wood = woodSpeccyRepository.findById(woodId).orElse(null);
+        Furniture furniture = furnitureRepository.findById(furnitureId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Not found furnitureId:" + furnitureId));
+        WoodSpeccy wood = woodSpeccyRepository.findById(woodId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Not found woodId:" + woodId));
 
-        if (furniture == null || wood == null) {
-            return null;
-        }
-        BigDecimal price = furniture.getMaterialConsumption()
+        return furniture.getMaterialConsumption()
                 .multiply(wood.getCubicMeterPrice())
                 .multiply(new BigDecimal(quantity));
-        return price;
     }
 }

@@ -1,4 +1,4 @@
-package project.furnitureworkshop.demo.security;
+package project.furnitureworkshop.demo.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

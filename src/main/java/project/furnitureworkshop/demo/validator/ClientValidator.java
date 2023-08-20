@@ -32,7 +32,7 @@ public class ClientValidator {
         validateEmail(clientDTO, violations);
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided client is invalid!", violations);
+            throw new ValidationException("Provided client is invalid!");
         }
     }
 

@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.furnitureworkshop.demo.controller.dto.OrderDTO;
+import project.furnitureworkshop.demo.exception.ValidationException;
 import project.furnitureworkshop.demo.service.OrderService;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 @Tag(name = "Order management API", description = "API for CRUD operations with order")
 @RestController
@@ -45,17 +47,14 @@ public class OrderController {
     }
     @Operation(description = "This procedure is designed to calculate the total price (price for furniture, price per volume of wood, number of products).")
     @GetMapping("/price")
-    public ResponseEntity<BigDecimal> getTotalPrice(@RequestParam Integer furnitureId,
+    public BigDecimal getTotalPrice(@RequestParam Integer furnitureId,
                                                     @RequestParam Integer woodId,
                                                     @RequestParam Integer quantity) {
-        if (furnitureId == null || woodId == null || quantity == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        BigDecimal price = orderService.calculateTotalPrice(furnitureId, woodId, quantity);
 
-        if (price != null) {
-            return new ResponseEntity<>(price, HttpStatus.OK);
+        if (furnitureId == null || woodId == null || quantity == null) {
+            throw new ValidationException("Parameter is null!" );
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        return orderService.calculateTotalPrice(furnitureId, woodId, quantity);
     }
 }

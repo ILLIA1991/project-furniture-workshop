@@ -1,4 +1,4 @@
-package project.furnitureworkshop.demo.config;
+package project.furnitureworkshop.demo.config.exceptionhandling;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

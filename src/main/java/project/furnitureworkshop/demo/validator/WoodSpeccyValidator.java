@@ -36,7 +36,7 @@ public class WoodSpeccyValidator {
 
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided wood speccy is invalid!", violations);
+            throw new ValidationException("Provided wood speccy is invalid!");
         }
     }
 

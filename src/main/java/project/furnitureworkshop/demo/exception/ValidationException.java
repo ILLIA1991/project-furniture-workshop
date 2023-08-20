@@ -6,9 +6,13 @@ public class ValidationException extends RuntimeException {
 
     private final List<String> violations;
 
-    public ValidationException(String message, List<String> violations) {
+    public ValidationException(String message) {
         super(message);
         this.violations = violations;
+    }
+
+    public List<String> getViolations() {
+        return violations;
     }
 
     @Override

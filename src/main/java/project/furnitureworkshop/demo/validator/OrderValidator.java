@@ -32,7 +32,7 @@ public class OrderValidator {
 
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided order is invalid!", violations);
+            throw new ValidationException("Provided order is invalid!");
         }
 
     }
