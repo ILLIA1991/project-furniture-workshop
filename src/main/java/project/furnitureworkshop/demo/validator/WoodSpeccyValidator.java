@@ -12,12 +12,7 @@ import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-/*WoodSpeccyDTO
-    woodType - не пустая строка
-    hardness - существует
-    cubicMeterPrice - не null и > BigDecimal.ZERO
 
- */
 @Component
 public class WoodSpeccyValidator {
 
@@ -36,7 +31,7 @@ public class WoodSpeccyValidator {
 
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided wood speccy is invalid!");
+            throw new ValidationException("Provided wood speccy is invalid!", violations);
         }
     }
 

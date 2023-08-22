@@ -2,7 +2,6 @@ package project.furnitureworkshop.demo.validator;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -11,14 +10,10 @@ import project.furnitureworkshop.demo.exception.ValidationException;
 import project.furnitureworkshop.demo.repository.ClientRepository;
 import project.furnitureworkshop.demo.repository.model.Client;
 
-
-import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class ClientValidatorTest {

@@ -27,6 +27,6 @@ public class OpenAPIConfig {
                 .description("API fo Furniture Workshop Corporation")
                 .license(mitLicense);
 
-        return  new OpenAPI().info(info);
+        return new OpenAPI().info(info);
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
     <changeSet author="Illia Belikau" id="1690275206547-1">
         <createTable tableName="orders">
             <column autoIncrement="true" name="id" type="BIGINT">
@@ -92,18 +94,27 @@
         <addUniqueConstraint columnNames="name" constraintName="name_unq" tableName="furniture"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-9">
-        <addForeignKeyConstraint baseColumnNames="furniture_id" baseTableName="orders_items" constraintName="furniture_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="furniture" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="furniture_id" baseTableName="orders_items"
+                                 constraintName="furniture_id_fk" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="furniture" validate="true"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-10">
-        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="orders_items" constraintName="order_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="orders" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="orders_items" constraintName="order_id_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="orders" validate="true"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-11">
         <addUniqueConstraint columnNames="type_of_wood" constraintName="type_of_wood_unq" tableName="wood_species"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-12">
-        <addForeignKeyConstraint baseColumnNames="clients_id" baseTableName="orders" constraintName="clients_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="client" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="clients_id" baseTableName="orders" constraintName="clients_id_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="client" validate="true"/>
     </changeSet>
     <changeSet author="Illia Belikau" id="1690275206547-13">
-        <addForeignKeyConstraint baseColumnNames="wood_id" baseTableName="orders_items" constraintName="wood_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="wood_species" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="wood_id" baseTableName="orders_items" constraintName="wood_id_fk"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="wood_species" validate="true"/>
     </changeSet>
 </databaseChangeLog>

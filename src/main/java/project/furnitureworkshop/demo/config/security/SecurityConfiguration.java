@@ -31,9 +31,10 @@ public class SecurityConfiguration {
                 .roles("ADMIN", "CLIENT")
                 .authorities("ADMIN")
                 .build();
-        return  new InMemoryUserDetailsManager(user, admin);
+        return new InMemoryUserDetailsManager(user, admin);
 
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -44,8 +45,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/clients/").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.DELETE, "/clients/", "/orders/").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/furniture/", "/woods/", "/clients/", "/orders/").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/clients/", "/orders/", "/furniture/","/woods/").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/clients/","/orders/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/clients/", "/orders/", "/furniture/", "/woods/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/clients/", "/orders/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/clients/", "/orders").hasRole("ADMIN")
                         .requestMatchers("/hello/").hasRole("HELLO")
                         .requestMatchers("/random-joke").permitAll()

@@ -19,7 +19,6 @@ public class ClientDTO {
     private String phone;
 
 
-
     public Integer getId() {
         return id;
     }

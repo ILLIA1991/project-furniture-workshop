@@ -4,14 +4,14 @@ package project.furnitureworkshop.demo.currency.integration.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ForeignExchangeDTO  {
+public class ForeignExchangeDTO {
 
 
-        private Integer r030;
-        private String txt;
-        private BigDecimal rate;
-        private String cc;
-        private Date exchangeDate;
+    private Integer r030;
+    private String txt;
+    private BigDecimal rate;
+    private String cc;
+    private Date exchangeDate;
 
     public ForeignExchangeDTO(Integer r030, String txt, BigDecimal rate, String cc, Date exchangeDate) {
         this.r030 = r030;

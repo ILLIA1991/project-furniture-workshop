@@ -1,21 +1,10 @@
 package project.furnitureworkshop.demo.validator;
 
-/*
-OrderDTO
-    - client  - client.getId() != null
-    - orderDate - != null
-    - orderItems  - не пустой массив
-    OrderItemDTO
-        - furniture - furniture.getId() != null
-        - wood  - wood.getId() != null
-        - quantity != null, > 0
-        - price != null, > BigDecimal.ZERO
- */
-
 import org.springframework.stereotype.Component;
 import project.furnitureworkshop.demo.controller.dto.OrderDTO;
 import project.furnitureworkshop.demo.controller.dto.OrderItemDTO;
 import project.furnitureworkshop.demo.exception.ValidationException;
+import project.furnitureworkshop.demo.repository.OrderRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,6 +12,10 @@ import java.util.List;
 
 @Component
 public class OrderValidator {
+
+    public OrderValidator(OrderRepository orderRepository) {
+
+    }
 
     public void validateOrder(OrderDTO orderDTO) {
         List<String> violations = new ArrayList<>();
@@ -32,7 +25,7 @@ public class OrderValidator {
 
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Provided order is invalid!");
+            throw new ValidationException("Provided order is invalid!", violations);
         }
 
     }
