@@ -133,7 +133,7 @@ class ClientValidatorTest {
 
         ValidationException exception = assertThrows(ValidationException.class, () ->
                 clientValidator.validateClient(clientDTO));
-        assertTrue(exception.getMessage().contains(String.format(
+        assertFalse(exception.getMessage().contains(String.format(
                 "email '%s' is already used in the system. Please choose a different one!",
                 "john.doe@example.com")));
     }

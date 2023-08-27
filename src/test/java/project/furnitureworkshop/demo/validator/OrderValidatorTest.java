@@ -2,11 +2,9 @@ package project.furnitureworkshop.demo.validator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import project.furnitureworkshop.demo.controller.dto.ClientDTO;
-import project.furnitureworkshop.demo.controller.dto.OrderDTO;
-import project.furnitureworkshop.demo.controller.dto.OrderItemDTO;
-import project.furnitureworkshop.demo.controller.dto.WoodSpeccyDTO;
+import project.furnitureworkshop.demo.controller.dto.*;
 import project.furnitureworkshop.demo.exception.ValidationException;
+import project.furnitureworkshop.demo.repository.FurnitureRepository;
 import project.furnitureworkshop.demo.repository.OrderRepository;
 
 import java.math.BigDecimal;
@@ -19,6 +17,8 @@ import static org.mockito.Mockito.mock;
 class OrderValidatorTest {
 
     private final OrderRepository orderRepository = mock(OrderRepository.class);
+    private final WoodSpeccyDTO woodSpeccyDTO = mock(WoodSpeccyDTO.class);
+    private final FurnitureDTO furnitureDTO = mock(FurnitureDTO.class);
 
     private final OrderValidator target = new OrderValidator(orderRepository);
 
@@ -96,9 +96,10 @@ class OrderValidatorTest {
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
         OrderItemDTO orderItemDTO = new OrderItemDTO();
+        orderItemDTO.setWood(woodSpeccyDTO);
+        orderItemDTO.setFurniture(new FurnitureDTO());
         orderItemDTO.setPrice(BigDecimal.TEN);
         orderItemDTO.setQuantity(1);
-        orderItemDTO.setWood(new WoodSpeccyDTO());
         dto.getOrdersItems().add(orderItemDTO);
         return dto;
     }
@@ -120,6 +121,8 @@ class OrderValidatorTest {
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
         OrderItemDTO orderItemDTO = new OrderItemDTO();
+        orderItemDTO.setWood(new WoodSpeccyDTO());
+        orderItemDTO.setFurniture(new FurnitureDTO());
         orderItemDTO.setPrice(BigDecimal.TEN);
         orderItemDTO.setQuantity(1);
         dto.getOrdersItems().add(orderItemDTO);
@@ -144,6 +147,8 @@ class OrderValidatorTest {
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
         OrderItemDTO orderItemDTO = new OrderItemDTO();
+        orderItemDTO.setWood(new WoodSpeccyDTO());
+        orderItemDTO.setFurniture(new FurnitureDTO());
         orderItemDTO.setPrice(BigDecimal.TEN);
         dto.getOrdersItems().add(orderItemDTO);
         return dto;
@@ -166,7 +171,9 @@ class OrderValidatorTest {
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
         OrderItemDTO orderItemDTO = new OrderItemDTO();
-        orderItemDTO.setPrice(BigDecimal.TEN);
+        orderItemDTO.setWood(new WoodSpeccyDTO());
+        orderItemDTO.setFurniture(new FurnitureDTO());
+        orderItemDTO.setPrice(new BigDecimal(9));
         orderItemDTO.setQuantity(0);
         dto.getOrdersItems().add(orderItemDTO);
         return dto;
@@ -188,7 +195,12 @@ class OrderValidatorTest {
         OrderDTO dto = new OrderDTO();
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
-        dto.getOrdersItems().add(new OrderItemDTO());
+        OrderItemDTO orderItemDTO = new OrderItemDTO();
+        orderItemDTO.setWood(new WoodSpeccyDTO());
+        orderItemDTO.setFurniture(new FurnitureDTO());
+        orderItemDTO.setQuantity(null);
+        orderItemDTO.setPrice(null);
+        dto.getOrdersItems().add(orderItemDTO);
         return dto;
     }
 
@@ -209,7 +221,9 @@ class OrderValidatorTest {
         dto.setOrderDate(Date.valueOf("2022-01-01"));
         dto.setClient(new ClientDTO());
         OrderItemDTO orderItemDTO = new OrderItemDTO();
-        orderItemDTO.setPrice(BigDecimal.ZERO);
+        orderItemDTO.setWood(new WoodSpeccyDTO());
+        orderItemDTO.setFurniture(new FurnitureDTO());
+        orderItemDTO.setPrice(new BigDecimal(0));
         dto.getOrdersItems().add(orderItemDTO);
         return dto;
     }

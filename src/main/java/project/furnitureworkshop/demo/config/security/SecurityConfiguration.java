@@ -17,21 +17,24 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private static final String CLIENT_ROLE = "CLIENT";
+    private static final String ADMIN_ROLE = "ADMIN";
+
     @Bean
     public InMemoryUserDetailsManager users() {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
-        UserDetails user = users
+        UserDetails client = users
                 .username("client")
                 .password("shlepok")
-                .roles("CLIENT")
+                .roles(CLIENT_ROLE)
                 .build();
         UserDetails admin = users
                 .username("admin")
                 .password("chacha")
-                .roles("ADMIN", "CLIENT")
-                .authorities("ADMIN")
+                .roles(ADMIN_ROLE, CLIENT_ROLE)
+                .authorities(ADMIN_ROLE)
                 .build();
-        return new InMemoryUserDetailsManager(user, admin);
+        return new InMemoryUserDetailsManager(client, admin);
 
     }
 
@@ -48,8 +51,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/clients/", "/orders/", "/furniture/", "/woods/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/clients/", "/orders/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/clients/", "/orders").hasRole("ADMIN")
-                        .requestMatchers("/hello/").hasRole("HELLO")
-                        .requestMatchers("/random-joke").permitAll()
+                        .requestMatchers("/price").permitAll()
+                        .requestMatchers("/hryvnia").permitAll()
                         .anyRequest().authenticated())
                 .build();
     }
