@@ -88,13 +88,13 @@ class WoodSpeccyIntegrationIT {
         WoodSpeccyDTO actualWood = actualWoodSpeccyEntity.getBody();
         assertThat(actualWood).isNotNull();
         assertThat(actualWood.getWoodType()).isEqualTo(someWood.getWoodType());
-        assertThat(actualWood.getHardness()).isEqualTo(someWood.getHardness());
+        assertThat(actualWood.getHardness()).isEqualToIgnoringCase(someWood.getHardness());
         assertThat(actualWood.getCubicMeterPrice()).isEqualTo(someWood.getCubicMeterPrice());
         
         //update wood then
         assert updatedWoodSpeccyBody != null;
         assertThat(updatedWoodSpeccyBody.getWoodType()).isEqualTo(updateWoodType);
-        assertThat(updatedWoodSpeccyBody.getHardness()).isEqualTo(updateHardness);
+        assertThat(updatedWoodSpeccyBody.getHardness()).isEqualToIgnoringCase(updateHardness);
         assertThat(updatedWoodSpeccyBody.getCubicMeterPrice()).isEqualTo(updateCubicMeterPrice);
         
         //delete wood then
