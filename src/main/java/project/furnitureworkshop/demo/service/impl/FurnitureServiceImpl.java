@@ -38,7 +38,7 @@ public class FurnitureServiceImpl implements FurnitureService {
 
     @Override
     public FurnitureDTO getById(Integer id) {
-        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Product not found:" + id));
+        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Furniture not found: " + id));
         return furnitureConverter.convertToDto(furniture);
     }
 
@@ -54,7 +54,7 @@ public class FurnitureServiceImpl implements FurnitureService {
     @Override
     @Transactional
     public void deleteFurniture(Integer id) {
-        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Furniture not found:" + id));
+        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Furniture not found: " + id));
         furnitureRepository.delete(furniture);
 
     }
@@ -63,7 +63,7 @@ public class FurnitureServiceImpl implements FurnitureService {
     @Transactional
     public FurnitureDTO updateFurniture(Integer id, FurnitureDTO furnitureToUpdate) {
         furnitureValidator.validateFurniture(furnitureToUpdate);
-        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Furniture not found:" + id));
+        Furniture furniture = furnitureRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Furniture not found: " + id));
         Furniture entityToUpdate = furnitureConverter.convertToEntity(furnitureToUpdate);
         entityToUpdate.setId(id);
         Furniture updateEntity = furnitureRepository.save(entityToUpdate);

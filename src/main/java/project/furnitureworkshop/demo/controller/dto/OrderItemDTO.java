@@ -10,6 +10,7 @@ public class OrderItemDTO {
     private Integer quantity;
     private BigDecimal price;
 
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +50,8 @@ public class OrderItemDTO {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setWoodSpeccy(WoodSpeccyDTO woodSpeccy) {
     }
 }

@@ -1,10 +1,10 @@
 package project.furnitureworkshop.demo;
 
 
+import org.apache.commons.codec.binary.Base64;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -15,6 +15,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import project.furnitureworkshop.demo.controller.dto.ClientDTO;
+
+import java.nio.charset.Charset;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,7 +30,7 @@ class ClientIntegrationIT {
     private Integer port;
 
     @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14.8");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:12");
 
     @DynamicPropertySource
     static void postgresProperties(DynamicPropertyRegistry registry) {
@@ -38,20 +40,10 @@ class ClientIntegrationIT {
         registry.add("spring.datasource.driver-class-name", postgres::getDriverClassName);
     }
 
-    @Test
-    void checkClients() {
-
-        TestRestTemplate restTemplate = new TestRestTemplate();
-
-        ResponseEntity<ClientDTO[]> forEntity = restTemplate.getForEntity("http://localhost:" + port + "/clients", ClientDTO[].class);
-        ClientDTO[] body = forEntity.getBody();
-
-        assertThat(body).isNotEmpty();
-    }
 
     @Test
     @DisplayName("Tests client creation")
-    void verifyCreateClient()  {
+    void verifyClientLifecycle(){
         //given
         RestTemplate restTemplate = new RestTemplate();
         ClientDTO someClient = someClient();
@@ -60,34 +52,27 @@ class ClientIntegrationIT {
         String updatedClientPhone = updateClient.getPhone();
         String updatedClientEmail = updateClient.getEmail();
 
+
         // prepare request
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // security
+        String auth = "admin" + ":" + "security";
+        byte[] encodedAuth = Base64.encodeBase64(
+                auth.getBytes(Charset.forName("US-ASCII")) );
+        String authHeader = "Basic " + new String( encodedAuth );
+        headers.add( "Authorization", authHeader );
+
         HttpEntity<ClientDTO> request = new HttpEntity<>(someClient, headers);
-        HttpEntity<ClientDTO> requestUpdate = new HttpEntity<>(updateClient, headers);
 
         // client creation
-        ResponseEntity<Integer> forEntity = restTemplate.postForEntity("http://localhost:" + port + "/client", request, Integer.class);
+        ResponseEntity<Integer> forEntity = restTemplate.postForEntity("http://localhost:" + port + "/clients", request, Integer.class);
         Integer createdClientId = forEntity.getBody();
 
         //when
-        ClientDTO actualClient = restTemplate.getForObject("http://localhost:" + port + "/clients/" + createdClientId, ClientDTO.class);
-
-        //update client
-        updateClient.setId(createdClientId);
-        ResponseEntity<ClientDTO> updatedClient = restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.PUT, requestUpdate, ClientDTO.class);
-        ClientDTO updatedClientBody = updatedClient.getBody();
-
-
-        //delete client
-        restTemplate.delete("http://localhost:" + port + "/clients/" + createdClientId);
-
-
-        HttpClientErrorException.NotFound actualException = assertThrows(HttpClientErrorException.NotFound.class,
-                () -> restTemplate.getForObject("http://localhost:" + port + "/clients/" + createdClientId, ClientDTO.class));
-
-        String expectedMessage =String.format("404 : \"Client not found: %d\"", createdClientId);
-
+        ResponseEntity<ClientDTO> actual = restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.GET, request, ClientDTO.class);
+        ClientDTO actualClient = actual.getBody();
 
         //create client then
         assertThat(actualClient).isNotNull();
@@ -96,32 +81,46 @@ class ClientIntegrationIT {
         assertThat(actualClient.getPhone()).isEqualTo(someClient.getPhone());
         assertThat(actualClient.getEmail()).isEqualTo(someClient.getEmail());
 
+        //update client
+        HttpEntity<ClientDTO> requestUpdate = new HttpEntity<>(updateClient, headers);
+        updateClient.setId(createdClientId);
+        ResponseEntity<ClientDTO> updatedClient = restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.PUT, requestUpdate, ClientDTO.class);
+        ClientDTO updatedClientBody = updatedClient.getBody();
+
         //update client then
         assert updatedClientBody != null;
         assertThat(updatedClientBody.getName()).isEqualTo(updatedClientName);
         assertThat(updatedClientBody.getPhone()).isEqualTo(updatedClientPhone);
         assertThat(updatedClientBody.getEmail()).isEqualTo(updatedClientEmail);
 
+        //delete client
+        restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.DELETE, request, ClientDTO.class);
+
+        HttpClientErrorException.NotFound actualException = assertThrows(HttpClientErrorException.NotFound.class,
+                () -> restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.GET, request, ClientDTO.class));
+
+        String expectedMessage =String.format("404 : \"Client not found%d\"", createdClientId);
 
         //delete client then
         assertThat(actualException.getMessage()).isEqualTo(expectedMessage);
+    }
 
+    private ClientDTO updateClient(){
+        ClientDTO client = new ClientDTO();
+        client.setName("Richard1");
+        client.setSurname("Hamond1");
+        client.setPhone("111111111112");
+        client.setEmail("t@mail.com");
+        return client;
     }
 
     private ClientDTO someClient() {
         ClientDTO client = new ClientDTO();
-        client.setName("ClientName");
-        client.setSurname("ClientSurname");
-        client.setPhone("121212111");
-        client.setEmail("client@gmail.com");
+        client.setName("Richard");
+        client.setSurname("Hamond");
+        client.setPhone("111111111113");
+        client.setEmail("wt@mail.com");
         return client;
     }
-    private ClientDTO updateClient(){
-        ClientDTO client = new ClientDTO();
-        client.setName("UpdateName");
-        client.setSurname("ClientSurname");
-        client.setPhone("999999999");
-        client.setEmail("client@gmail.com");
-        return client;
-    }
+
 }

@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                 .build();
         UserDetails admin = users
                 .username("admin")
-                .password("chacha")
+                .password("security")
                 .roles(ADMIN_ROLE, CLIENT_ROLE)
                 .authorities(ADMIN_ROLE)
                 .build();

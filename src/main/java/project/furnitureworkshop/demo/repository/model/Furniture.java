@@ -21,6 +21,10 @@ public class Furniture {
     public Furniture() {
     }
 
+    public Furniture(BigDecimal materialConsumption) {
+        this.materialConsumption = materialConsumption;
+    }
+
     public Furniture(String name, String description, BigDecimal materialConsumption) {
         this.name = name;
         this.description = description;

@@ -22,6 +22,10 @@ public class WoodSpeccy {
     public WoodSpeccy() {
     }
 
+    public WoodSpeccy(BigDecimal cubicMeterPrice) {
+        this.cubicMeterPrice = cubicMeterPrice;
+    }
+
     public WoodSpeccy(String woodType, HardnessOfWood hardness, BigDecimal cubicMeterPrice) {
         this.woodType = woodType;
         this.hardness = hardness;

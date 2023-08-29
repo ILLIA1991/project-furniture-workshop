@@ -12,7 +12,7 @@ import java.util.List;
 
 @Tag(name = "Client management API", description = "API for CRUD operations with clients")
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/clients")
 public class ClientController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
     private final ClientService clientService;

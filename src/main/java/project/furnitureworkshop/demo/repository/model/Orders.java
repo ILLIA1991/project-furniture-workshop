@@ -33,6 +33,10 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(Integer id) {
+        this.id = id;
+    }
+
     public Orders(Client client, Date orderDate, List<OrderItem> ordersItems) {
         this.client = client;
         this.orderDate = orderDate;
@@ -45,6 +49,8 @@ public class Orders {
         this.orderDate = orderDate;
         this.ordersItems = ordersItems;
     }
+
+
 
     public Integer getId() {
         return id;
