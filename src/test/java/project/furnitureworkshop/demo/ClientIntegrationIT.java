@@ -99,7 +99,7 @@ class ClientIntegrationIT {
         HttpClientErrorException.NotFound actualException = assertThrows(HttpClientErrorException.NotFound.class,
                 () -> restTemplate.exchange("http://localhost:" + port + "/clients/" + createdClientId, HttpMethod.GET, request, ClientDTO.class));
 
-        String expectedMessage =String.format("404 : \"Client not found%d\"", createdClientId);
+        String expectedMessage =String.format("404 : \"Client not found: %d\"", createdClientId);
 
         //delete client then
         assertThat(actualException.getMessage()).isEqualTo(expectedMessage);
@@ -107,8 +107,8 @@ class ClientIntegrationIT {
 
     private ClientDTO updateClient(){
         ClientDTO client = new ClientDTO();
-        client.setName("Richard1");
-        client.setSurname("Hamond1");
+        client.setName("Richardas");
+        client.setSurname("Hamondas");
         client.setPhone("111111111112");
         client.setEmail("t@mail.com");
         return client;

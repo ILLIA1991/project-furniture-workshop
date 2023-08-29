@@ -52,6 +52,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Integer id) {
         Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("You're not with us anymore!: " + id));
         clientRepository.delete(client);
