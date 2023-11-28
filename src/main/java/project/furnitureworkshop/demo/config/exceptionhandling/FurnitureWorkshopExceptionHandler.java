@@ -13,7 +13,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @ControllerAdvice
 public class FurnitureWorkshopExceptionHandler {
 
-
     @ExceptionHandler({FurnitureWorkshopNotFoundException.class})
     public ResponseEntity<String> handleNotFoundException(FurnitureWorkshopNotFoundException e) {
         return ResponseEntity.status(NOT_FOUND).body(e.getMessage());

@@ -57,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrder(Integer orderId) {
         Orders orders = orderRepository.findById(orderId).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Orders not found:" + orderId));
         orderRepository.delete(orders);
-
     }
 
     @Override

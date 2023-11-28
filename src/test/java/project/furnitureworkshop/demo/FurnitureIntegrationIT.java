@@ -1,6 +1,5 @@
 package project.furnitureworkshop.demo;
 
-
 import org.apache.commons.codec.binary.Base64;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Testcontainers
-@SpringBootTest(classes = DemoApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class FurnitureIntegrationIT {
 
     @LocalServerPort
@@ -42,7 +41,7 @@ class FurnitureIntegrationIT {
 
     @Test
     @DisplayName("Tests furniture creation")
-     void verifyCreateFurniture() {
+    void verifyCreateFurniture() {
         RestTemplate restTemplate = new RestTemplate();
         FurnitureDTO someFurniture = someFurniture();
         FurnitureDTO updateFurniture = updateFurniture();
@@ -57,10 +56,9 @@ class FurnitureIntegrationIT {
         //security
         String auth = "admin" + ":" + "security";
         byte[] encodedAuth = Base64.encodeBase64(
-                auth.getBytes(Charset.forName("US-ASCII")) );
-        String authHeader = "Basic " + new String( encodedAuth );
-        headers.add( "Authorization", authHeader );
-
+                auth.getBytes(Charset.forName("US-ASCII")));
+        String authHeader = "Basic " + new String(encodedAuth);
+        headers.add("Authorization", authHeader);
 
         HttpEntity<FurnitureDTO> request = new HttpEntity<>(someFurniture, headers);
         HttpEntity<FurnitureDTO> requestUpdate = new HttpEntity<>(updateFurniture, headers);
@@ -77,15 +75,13 @@ class FurnitureIntegrationIT {
         ResponseEntity<FurnitureDTO> updatedFurniture = restTemplate.exchange("http://localhost:" + port + "/furniture/" + createdFurnitureId, HttpMethod.PUT, requestUpdate, FurnitureDTO.class);
         FurnitureDTO updatedFurnitureBody = updatedFurniture.getBody();
 
-
         //delete furniture
         restTemplate.exchange("http://localhost:" + port + "/furniture/" + createdFurnitureId, HttpMethod.DELETE, request, FurnitureDTO.class);
-
 
         HttpClientErrorException.NotFound actualException = assertThrows(HttpClientErrorException.NotFound.class,
                 () -> restTemplate.exchange("http://localhost:" + port + "/furniture/" + createdFurnitureId, HttpMethod.GET, request, FurnitureDTO.class));
 
-        String expectedMessage =String.format("404 : \"Furniture not found: %d\"", createdFurnitureId);
+        String expectedMessage = String.format("404 : \"Furniture not found: %d\"", createdFurnitureId);
 
         //create furniture then
         FurnitureDTO actualFurniture = actualFurnitureEntity.getBody();
@@ -95,14 +91,12 @@ class FurnitureIntegrationIT {
         assertThat(actualFurniture.getMaterialConsumption()).isEqualTo(someFurniture.getMaterialConsumption());
 
         //update furniture then
-        assert updatedFurnitureBody != null;
         assertThat(updatedFurnitureBody.getName()).isEqualTo(updateFurnitureName);
         assertThat(updatedFurnitureBody.getDescription()).isEqualTo(updateFurnitureDescription);
         assertThat(updatedFurnitureBody.getMaterialConsumption()).isEqualTo(updateFurnitureMaterialConsumption);
 
         //delete furniture then
         assertThat(actualException.getMessage()).isEqualTo(expectedMessage);
-
     }
 
     private FurnitureDTO updateFurniture() {
@@ -117,7 +111,7 @@ class FurnitureIntegrationIT {
         FurnitureDTO dto = new FurnitureDTO();
         dto.setName("FurnitureName");
         dto.setDescription("DescriptionName");
-        dto.setMaterialConsumption( new BigDecimal("5.00"));
+        dto.setMaterialConsumption(new BigDecimal("5.00"));
         return dto;
     }
 }

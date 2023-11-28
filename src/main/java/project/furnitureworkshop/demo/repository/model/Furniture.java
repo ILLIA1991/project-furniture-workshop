@@ -38,7 +38,6 @@ public class Furniture {
         this.materialConsumption = materialConsumption;
     }
 
-
     public Integer getId() {
         return id;
     }
@@ -63,7 +62,6 @@ public class Furniture {
         this.description = description;
     }
 
-
     public BigDecimal getMaterialConsumption() {
         return materialConsumption;
     }
@@ -71,7 +69,6 @@ public class Furniture {
     public void setMaterialConsumption(BigDecimal materialConsumption) {
         this.materialConsumption = materialConsumption;
     }
-
 
     @Override
     public String toString() {

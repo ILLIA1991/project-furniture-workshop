@@ -47,6 +47,4 @@ public class FurnitureController {
     public FurnitureDTO update(@PathVariable Integer id, @RequestBody FurnitureDTO furnitureToUpdate) {
         return furnitureService.updateFurniture(id, furnitureToUpdate);
     }
-
-
 }

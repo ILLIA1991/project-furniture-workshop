@@ -8,19 +8,18 @@ import project.furnitureworkshop.demo.repository.model.Client;
 import project.furnitureworkshop.demo.repository.model.OrderItem;
 import project.furnitureworkshop.demo.repository.model.Orders;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class OrderConverterTest {
 
     private final ClientConverter clientConverter = mock(ClientConverter.class);
+
     private final OrderItemConverter orderItemConverter = mock(OrderItemConverter.class);
 
     private final OrderConverter target = new OrderConverter(clientConverter, orderItemConverter);
@@ -30,7 +29,7 @@ class OrderConverterTest {
         //given
         Orders orders = new Orders();
         orders.setId(1);
-        orders.setOrderDate(new Date(2023-07-21));
+        orders.setOrderDate(new Date(2023 - 07 - 21));
         Client client = new Client();
         List<OrderItem> orderItems = new ArrayList<>();
         orders.setClients(client);
@@ -58,7 +57,7 @@ class OrderConverterTest {
         List<Orders> ordersList = new ArrayList<>();
         Orders orders1 = new Orders();
         orders1.setId(1);
-        orders1.setOrderDate(new Date(2023-07-21));
+        orders1.setOrderDate(new Date(2023 - 07 - 21));
         Client client1 = new Client();
         List<OrderItem> orderItems1 = new ArrayList<>();
         orders1.setClients(client1);
@@ -66,7 +65,7 @@ class OrderConverterTest {
 
         Orders orders2 = new Orders();
         orders2.setId(2);
-        orders2.setOrderDate(new Date(2023-07-21));
+        orders2.setOrderDate(new Date(2023 - 07 - 21));
         Client client2 = new Client();
         List<OrderItem> orderItems2 = new ArrayList<>();
         orders2.setClients(client2);
@@ -109,7 +108,7 @@ class OrderConverterTest {
         //given
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(1);
-        orderDTO.setOrderDate(new Date(2023-07-21));
+        orderDTO.setOrderDate(new Date(2023 - 07 - 21));
         ClientDTO clientDTO = new ClientDTO();
         List<OrderItemDTO> orderItemDTOS = new ArrayList<>();
         orderDTO.setClient(clientDTO);
@@ -131,5 +130,4 @@ class OrderConverterTest {
         assertThat(actual.getOrderDate()).isEqualTo(orderDTO.getOrderDate());
         assertThat(actual.getOrdersItems()).isEqualTo(orderItems);
     }
-
 }

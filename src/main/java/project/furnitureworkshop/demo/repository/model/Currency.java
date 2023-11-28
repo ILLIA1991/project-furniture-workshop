@@ -1,25 +1,15 @@
-package project.furnitureworkshop.demo.currency.integration.dto;
-
+package project.furnitureworkshop.demo.repository.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class ForeignExchangeDTO {
-
+public class Currency {
 
     private Integer r030;
     private String txt;
     private BigDecimal rate;
     private String cc;
     private Date exchangeDate;
-
-    public ForeignExchangeDTO(Integer r030, String txt, BigDecimal rate, String cc, Date exchangeDate) {
-        this.r030 = r030;
-        this.txt = txt;
-        this.rate = rate;
-        this.cc = cc;
-        this.exchangeDate = exchangeDate;
-    }
 
     public Integer getR030() {
         return r030;

@@ -5,11 +5,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import project.furnitureworkshop.demo.controller.dto.OrderDTO;
+import project.furnitureworkshop.demo.controller.dto.*;
 import project.furnitureworkshop.demo.exception.ValidationException;
+import project.furnitureworkshop.demo.service.CurrencyService;
+import project.furnitureworkshop.demo.service.FurnitureService;
 import project.furnitureworkshop.demo.service.OrderService;
+import project.furnitureworkshop.demo.service.WoodSpeccyService;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +24,17 @@ public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
     private final OrderService orderService;
+    private final CurrencyService currencyService;
 
-    public OrderController(OrderService orderService) {
+    private final FurnitureService furnitureService;
+    private final WoodSpeccyService woodService;
+
+    public OrderController(OrderService orderService, CurrencyService currencyService, FurnitureService furnitureService, WoodSpeccyService woodService) {
         this.orderService = orderService;
+        this.currencyService = currencyService;
+        this.furnitureService = furnitureService;
+
+        this.woodService = woodService;
     }
 
     @Operation(description = "Search for a specific order by ID. Access only to the admin.")
@@ -50,18 +62,43 @@ public class OrderController {
         return orderService.createOrder(orderToCreate);
     }
 
-    @Operation(description = "This procedure is designed to calculate the total price (price for furniture, price per volume of wood, number of products).")
+    @Operation(description = "This procedure is designed to calculate the total price (price for furniture, price per volume of wood, number of products) and convert it from USD to EUR.")
     @GetMapping("/price")
-    public BigDecimal getTotalPrice(@RequestParam Integer furnitureId,
-                                    @RequestParam Integer woodId,
-                                    @RequestParam Integer quantity) {
+    public OrderInfoDTO getTotalPriceInEur(@RequestParam Integer furnitureId,
+                                     @RequestParam Integer woodId,
+                                     @RequestParam Integer quantity) {
 
         if (furnitureId == null || woodId == null || quantity == null) {
             List<String> violations = new ArrayList<>();
-            violations.add("Parameter is null!");
-            throw new ValidationException("Parameter is null!", violations);
+            violations.add("Parameter  is null!");
+            throw new ValidationException("Invalid price parameters!", violations);
         }
+        BigDecimal totalPriceInPln = orderService.calculateTotalPrice(furnitureId, woodId, quantity);
+        CurrencyDTO eurCurrency = currencyService.findForeignExchange("PLN");
+        BigDecimal exchangeRate = eurCurrency.getRate();
+        BigDecimal totalPriceInEur = totalPriceInPln.divide(exchangeRate, 2, RoundingMode.HALF_UP);
 
-        return orderService.calculateTotalPrice(furnitureId, woodId, quantity);
+        FurnitureDTO furnitureDTO = furnitureService.getById(furnitureId);
+        WoodSpeccyDTO woodSpeccyDTO = woodService.getById(woodId);
+
+        OrderInfoDTO orderInfo = new OrderInfoDTO();
+        orderInfo.setTotalPriceInUsd(totalPriceInPln);
+        orderInfo.setTotalPriceInEur(totalPriceInEur);
+        orderInfo.setFurnitureId(furnitureDTO);
+        orderInfo.setWoodId(woodSpeccyDTO);
+        orderInfo.setQuantity(quantity);
+        return orderInfo;
     }
 }
+
+
+
+
+
+
+//        BigDecimal totalPriceInUsd = orderService.calculateTotalPrice(furnitureId, woodId, quantity);
+//        CurrencyDTO eurCurrency = currencyService.findForeignExchange("PLN");
+//        BigDecimal exchangeRate = eurCurrency.getRate();
+//        BigDecimal totalPriceInEur = totalPriceInUsd.divide(exchangeRate, 2, RoundingMode.HALF_UP);
+//
+//        return String.format("%.2f PLN -> %.2f USD", totalPriceInUsd, totalPriceInEur);

@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-
 @Component
 public class WoodSpeccyValidator {
 
@@ -41,7 +40,6 @@ public class WoodSpeccyValidator {
         } else if (woodSpeccyDTO.getCubicMeterPrice().compareTo(BigDecimal.ZERO) <= 0) {
             violations.add("Our price must be greater than 0");
         }
-
     }
 
     public void validateHardness(WoodSpeccyDTO woodSpeccyDTO, List<String> violations) {
@@ -50,13 +48,10 @@ public class WoodSpeccyValidator {
         }
     }
 
-
     private void validateLetterField(String value, List<String> violations) {
 
         if (isBlank(value)) {
             violations.add(String.format("%s can contain only letters: %s", "type_of_wood", value));
         }
     }
-
-
 }

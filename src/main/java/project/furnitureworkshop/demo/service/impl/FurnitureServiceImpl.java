@@ -16,13 +16,11 @@ import java.util.Collection;
 @Transactional(readOnly = true)
 public class FurnitureServiceImpl implements FurnitureService {
 
-
     private final FurnitureRepository furnitureRepository;
 
     private final FurnitureConverter furnitureConverter;
 
     private final FurnitureValidator furnitureValidator;
-
 
     public FurnitureServiceImpl(FurnitureRepository furnitureRepository, FurnitureConverter furnitureConverter, FurnitureValidator furnitureValidator) {
         this.furnitureRepository = furnitureRepository;

@@ -21,7 +21,7 @@ class ClientConverterTest {
 
     @Test
     @DisplayName("Should convert ClientDTO to Client")
-    void shouldConvertClientDtoToEntity(){
+    void shouldConvertClientDtoToEntity() {
         //given
         ClientDTO client = clientDTO();
         Client expected = entityClient();
@@ -35,8 +35,8 @@ class ClientConverterTest {
         assertThat(actual.getSurname()).isEqualTo(expected.getSurname());
         assertThat(actual.getPhone()).isEqualTo(expected.getPhone());
         assertThat(actual.getEmail()).isEqualTo(expected.getEmail());
-
     }
+
     @Test
     @DisplayName("Should convert Client to DTO")
     void shouldConvertClientToDto() {
@@ -53,7 +53,7 @@ class ClientConverterTest {
 
     @Test
     @DisplayName("Should convert Collection<Clients> to List<ClientDTO>")
-    void shouldConvertCollectionClientsToListClientsDTO(){
+    void shouldConvertCollectionClientsToListClientsDTO() {
         //given
         Collection<Client> clients = List.of(entityClient());
         List<ClientDTO> expected = List.of(clientDTO());
@@ -64,6 +64,7 @@ class ClientConverterTest {
         //then
         assertThat(actual).containsExactlyInAnyOrderElementsOf(expected);
     }
+
     private Client entityClient() {
         Client client = new Client();
         client.setId(ClientConverterTest.ID);
@@ -73,6 +74,7 @@ class ClientConverterTest {
         client.setEmail(EMAIL);
         return client;
     }
+
     private ClientDTO clientDTO() {
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setId(ClientConverterTest.ID);

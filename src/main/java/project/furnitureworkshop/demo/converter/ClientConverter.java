@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class ClientConverter {
-
     public Client convertToEntity(ClientDTO source) {
         return new Client(source.getId(),
                 source.getName(),
@@ -38,6 +37,4 @@ public class ClientConverter {
         result.setPhone(source.getPhone());
         return result;
     }
-
-
 }

@@ -12,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import project.furnitureworkshop.demo.DemoApplication;
-import project.furnitureworkshop.demo.controller.dto.FurnitureDTO;
 import project.furnitureworkshop.demo.controller.dto.WoodSpeccyDTO;
 
 import java.math.BigDecimal;
@@ -23,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Testcontainers
-@SpringBootTest(classes = DemoApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WoodSpeccyIntegrationIT {
 
     @LocalServerPort
@@ -56,9 +54,9 @@ class WoodSpeccyIntegrationIT {
         //security
         String auth = "admin" + ":" + "security";
         byte[] encodedAuth = Base64.encodeBase64(
-                auth.getBytes(Charset.forName("US-ASCII")) );
-        String authHeader = "Basic " + new String( encodedAuth );
-        headers.add( "Authorization", authHeader );
+                auth.getBytes(Charset.forName("US-ASCII")));
+        String authHeader = "Basic " + new String(encodedAuth);
+        headers.add("Authorization", authHeader);
 
         HttpEntity<WoodSpeccyDTO> request = new HttpEntity<>(someWood, headers);
         HttpEntity<WoodSpeccyDTO> requestUpdate = new HttpEntity<>(updateWood, headers);
@@ -81,25 +79,22 @@ class WoodSpeccyIntegrationIT {
         HttpClientErrorException.NotFound actualException = assertThrows(HttpClientErrorException.NotFound.class,
                 () -> restTemplate.exchange("http://localhost:" + port + "/woods/" + createdWoodSpeccyId, HttpMethod.GET, request, WoodSpeccyDTO.class));
 
-        String expectedMessage =String.format("404 : \"Wood not found: %d\"", createdWoodSpeccyId);
-        
-        
+        String expectedMessage = String.format("404 : \"Wood not found: %d\"", createdWoodSpeccyId);
+
         //create wood then
         WoodSpeccyDTO actualWood = actualWoodSpeccyEntity.getBody();
         assertThat(actualWood).isNotNull();
         assertThat(actualWood.getWoodType()).isEqualTo(someWood.getWoodType());
         assertThat(actualWood.getHardness()).isEqualToIgnoringCase(someWood.getHardness());
         assertThat(actualWood.getCubicMeterPrice()).isEqualTo(someWood.getCubicMeterPrice());
-        
+
         //update wood then
-        assert updatedWoodSpeccyBody != null;
         assertThat(updatedWoodSpeccyBody.getWoodType()).isEqualTo(updateWoodType);
         assertThat(updatedWoodSpeccyBody.getHardness()).isEqualToIgnoringCase(updateHardness);
         assertThat(updatedWoodSpeccyBody.getCubicMeterPrice()).isEqualTo(updateCubicMeterPrice);
-        
+
         //delete wood then
         assertThat(actualException.getMessage()).isEqualTo(expectedMessage);
-
     }
 
     private WoodSpeccyDTO updateWood() {

@@ -6,7 +6,6 @@ import project.furnitureworkshop.demo.controller.dto.OrderItemDTO;
 import project.furnitureworkshop.demo.controller.dto.WoodSpeccyDTO;
 import project.furnitureworkshop.demo.repository.model.Furniture;
 import project.furnitureworkshop.demo.repository.model.OrderItem;
-import project.furnitureworkshop.demo.repository.model.Orders;
 import project.furnitureworkshop.demo.repository.model.WoodSpeccy;
 
 import java.math.BigDecimal;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

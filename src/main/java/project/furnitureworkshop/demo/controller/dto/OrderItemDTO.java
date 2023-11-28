@@ -10,7 +10,6 @@ public class OrderItemDTO {
     private Integer quantity;
     private BigDecimal price;
 
-
     public Integer getId() {
         return id;
     }
@@ -18,7 +17,6 @@ public class OrderItemDTO {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
     public FurnitureDTO getFurniture() {
         return furniture;

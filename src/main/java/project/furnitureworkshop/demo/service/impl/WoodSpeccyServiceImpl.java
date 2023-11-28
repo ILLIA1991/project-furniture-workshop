@@ -22,7 +22,6 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
 
     private final WoodSpeccyValidator woodSpeccyValidator;
 
-
     public WoodSpeccyServiceImpl(WoodSpeccyRepository woodSpeciesRepository, WoodSpeccyConverter woodSpeccyConverter, WoodSpeccyValidator woodSpeccyValidator) {
         this.woodSpeciesRepository = woodSpeciesRepository;
         this.woodSpeccyConverter = woodSpeccyConverter;
@@ -55,7 +54,6 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     public void deleteWoodSpeccy(Integer id) {
         WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood species not found: " + id));
         woodSpeciesRepository.delete(woodSpecies);
-
     }
 
     @Override

@@ -17,7 +17,7 @@ public class ClientValidator {
 
     private static final Pattern ONLY_LETTERS_PATTERN = Pattern.compile("^[a-zA-Z]*$");
     private static final Pattern PHONE_NUMBER_PATTERN = Pattern.compile("\\d+");
-    public static final Pattern EMAIL_PATTERN = Pattern.compile("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$");
     private final ClientRepository clientRepository;
 
     public ClientValidator(ClientRepository clientRepository) {
@@ -58,16 +58,13 @@ public class ClientValidator {
         if (!EMAIL_PATTERN.matcher(clientDTO.getEmail()).matches()) {
             violations.add(String.format("invalid email: '%s'", clientDTO.getEmail()));
         }
-        List<Client> allByEmail = clientRepository.findAllByEmail(clientDTO.getEmail());
-        if (!allByEmail.isEmpty()) {
+        Client byEmail = clientRepository.findByEmail(clientDTO.getEmail());
+        if (byEmail != null) {
             violations.add(String.format("email '%s' is already used in the system. Please choose a different one!", clientDTO.getEmail()));
         }
     }
 }
 
-/*
 
-
- */
 
 

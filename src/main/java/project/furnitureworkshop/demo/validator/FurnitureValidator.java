@@ -24,7 +24,6 @@ public class FurnitureValidator {
         if (!violations.isEmpty()) {
             throw new ValidationException("Provided furniture is invalid", violations);
         }
-
     }
 
     private void validateMaterialConsumption(FurnitureDTO furnitureDTO, List<String> violations) {
@@ -35,11 +34,9 @@ public class FurnitureValidator {
         }
     }
 
-
     private void validateName(FurnitureDTO furnitureDTO, List<String> violations) {
         if (furnitureDTO.getName() == null) {
             violations.add(String.format("Name is null: %s", furnitureDTO.getName()));
         }
     }
-
 }

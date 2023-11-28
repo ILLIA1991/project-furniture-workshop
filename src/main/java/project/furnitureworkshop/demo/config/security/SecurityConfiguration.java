@@ -35,7 +35,6 @@ public class SecurityConfiguration {
                 .authorities(ADMIN_ROLE)
                 .build();
         return new InMemoryUserDetailsManager(client, admin);
-
     }
 
     @Bean
@@ -43,7 +42,7 @@ public class SecurityConfiguration {
         return http
                 .httpBasic(withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authz -> authz
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/furniture/", "/woods/").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.POST, "/clients/").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.DELETE, "/clients/", "/orders/").hasRole("CLIENT")

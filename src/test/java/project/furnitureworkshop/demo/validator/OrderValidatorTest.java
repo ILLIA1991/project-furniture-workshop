@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import project.furnitureworkshop.demo.controller.dto.*;
 import project.furnitureworkshop.demo.exception.ValidationException;
-import project.furnitureworkshop.demo.repository.FurnitureRepository;
 import project.furnitureworkshop.demo.repository.OrderRepository;
 
 import java.math.BigDecimal;

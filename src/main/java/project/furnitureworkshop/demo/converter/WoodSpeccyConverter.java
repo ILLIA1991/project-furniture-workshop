@@ -37,6 +37,4 @@ public class WoodSpeccyConverter {
         result.setCubicMeterPrice(source.getCubicMeterPrice());
         return result;
     }
-
-
 }

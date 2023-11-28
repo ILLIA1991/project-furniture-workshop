@@ -14,7 +14,6 @@ import java.util.List;
 public class OrderValidator {
 
     public OrderValidator(OrderRepository orderRepository) {
-
     }
 
     public void validateOrder(OrderDTO orderDTO) {
@@ -27,7 +26,6 @@ public class OrderValidator {
         if (!violations.isEmpty()) {
             throw new ValidationException("Provided order is invalid!", violations);
         }
-
     }
 
     private void validateOrderDate(OrderDTO orderDTO, List<String> violations) {
@@ -41,7 +39,6 @@ public class OrderValidator {
             violations.add("The client could not be found");
         }
     }
-
 
     private void validateOderItem(List<OrderItemDTO> orderItems, List<String> violations) {
         if (orderItems == null || orderItems.isEmpty()) {
@@ -84,6 +81,5 @@ public class OrderValidator {
         if (orderItemDTO.getFurniture().getId() == null) {
             violations.add("The furniture could not be found");
         }
-
     }
 }

@@ -5,19 +5,10 @@ import java.util.Objects;
 public class ClientDTO {
 
     private Integer id;
-
-
     private String name;
-
-
     private String surname;
-
-
     private String email;
-
-
     private String phone;
-
 
     public Integer getId() {
         return id;

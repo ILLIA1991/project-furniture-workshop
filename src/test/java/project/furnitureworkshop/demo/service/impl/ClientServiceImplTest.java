@@ -15,15 +15,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import static org.mockito.Mockito.*;
 
 class ClientServiceImplTest {
 
-
     private final ClientRepository clientRepository = mock(ClientRepository.class);
     private final ClientConverter clientConverter = mock(ClientConverter.class);
-    private final ClientValidator clientValidator= mock(ClientValidator.class);
+    private final ClientValidator clientValidator = mock(ClientValidator.class);
 
     private final ClientService target = new ClientServiceImpl(clientRepository,
             clientConverter,
@@ -48,7 +46,6 @@ class ClientServiceImplTest {
         verify(clientConverter).convertToEntity(clientDTO);
 
         assertThat(actualId).isEqualTo(savedClient.getId());
-
     }
 
     @Test

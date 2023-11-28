@@ -11,6 +11,7 @@ import java.util.Collection;
 @Tag(name = "Woods management API", description = "API for CRUD operations with woods")
 @RestController
 @RequestMapping("/woods")
+// TODO: 30.08.2023 Исправить название класса
 public class WoodSpeccyController {
     private final WoodSpeccyService woodSpeccyService;
 

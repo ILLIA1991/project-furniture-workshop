@@ -11,7 +11,6 @@ import project.furnitureworkshop.demo.repository.model.Orders;
 import project.furnitureworkshop.demo.repository.model.WoodSpeccy;
 import project.furnitureworkshop.demo.service.OrderService;
 import project.furnitureworkshop.demo.validator.OrderValidator;
-import project.furnitureworkshop.demo.validator.WoodSpeccyValidator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

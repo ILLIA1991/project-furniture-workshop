@@ -22,7 +22,6 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientValidator clientValidator;
 
-
     public ClientServiceImpl(ClientRepository clientRepository, ClientConverter clientConverter, ClientValidator clientValidator) {
         this.clientRepository = clientRepository;
         this.clientConverter = clientConverter;

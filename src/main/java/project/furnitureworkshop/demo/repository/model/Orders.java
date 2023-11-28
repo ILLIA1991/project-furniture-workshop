@@ -50,8 +50,6 @@ public class Orders {
         this.ordersItems = ordersItems;
     }
 
-
-
     public Integer getId() {
         return id;
     }
