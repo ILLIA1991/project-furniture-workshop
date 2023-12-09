@@ -14,19 +14,25 @@ public class WoodSpeccy {
     @Column(name = "type_of_wood")
     private String woodType;
     @Column(name = "hardness")
-    private String hardness;
+    @Enumerated(EnumType.STRING)
+    private HardnessOfWood hardness;
     @Column(name = "price_cubic_meter")
     private BigDecimal cubicMeterPrice;
 
+    public WoodSpeccy() {
+    }
 
+    public WoodSpeccy(BigDecimal cubicMeterPrice) {
+        this.cubicMeterPrice = cubicMeterPrice;
+    }
 
-    public WoodSpeccy(String woodType, String hardness, BigDecimal cubicMeterPrice) {
+    public WoodSpeccy(String woodType, HardnessOfWood hardness, BigDecimal cubicMeterPrice) {
         this.woodType = woodType;
         this.hardness = hardness;
         this.cubicMeterPrice = cubicMeterPrice;
     }
 
-    public WoodSpeccy(Integer id, String woodType, String hardness, BigDecimal cubicMeterPrice) {
+    public WoodSpeccy(Integer id, String woodType, HardnessOfWood hardness, BigDecimal cubicMeterPrice) {
         this.id = id;
         this.woodType = woodType;
         this.hardness = hardness;
@@ -49,12 +55,12 @@ public class WoodSpeccy {
         this.woodType = woodType;
     }
 
-    public String getHardness() {
+    public HardnessOfWood getHardness() {
         return hardness;
     }
 
     public void setHardness(String hardness) {
-        this.hardness = hardness;
+        this.hardness = HardnessOfWood.valueOf(hardness);
     }
 
     public BigDecimal getCubicMeterPrice() {

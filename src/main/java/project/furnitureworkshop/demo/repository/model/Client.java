@@ -3,7 +3,7 @@ package project.furnitureworkshop.demo.repository.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
 public class Client {
 
     @Id
@@ -23,6 +23,10 @@ public class Client {
     private String phone;
 
     public Client() {
+    }
+
+    public Client(Integer id) {
+        this.id = id;
     }
 
     public Client(Integer id, String name, String surname, String email, String phone) {

@@ -18,15 +18,12 @@ public class Furniture {
     @Column(name = "material_cube_meter")
     private BigDecimal materialConsumption;
 
-    public BigDecimal getMaterialConsumption() {
-        return materialConsumption;
+    public Furniture() {
     }
 
-    public void setMaterialConsumption(BigDecimal materialConsumption) {
+    public Furniture(BigDecimal materialConsumption) {
         this.materialConsumption = materialConsumption;
     }
-
-
 
     public Furniture(String name, String description, BigDecimal materialConsumption) {
         this.name = name;
@@ -40,8 +37,6 @@ public class Furniture {
         this.description = description;
         this.materialConsumption = materialConsumption;
     }
-
-
 
     public Integer getId() {
         return id;
@@ -67,7 +62,13 @@ public class Furniture {
         this.description = description;
     }
 
+    public BigDecimal getMaterialConsumption() {
+        return materialConsumption;
+    }
 
+    public void setMaterialConsumption(BigDecimal materialConsumption) {
+        this.materialConsumption = materialConsumption;
+    }
 
     @Override
     public String toString() {

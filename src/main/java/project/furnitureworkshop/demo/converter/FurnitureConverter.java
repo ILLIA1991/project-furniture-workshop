@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class FurnitureConverter {
-
     public Furniture convertToEntity(FurnitureDTO source) {
         return new Furniture(source.getId(),
                 source.getName(),
@@ -36,6 +35,4 @@ public class FurnitureConverter {
         result.setMaterialConsumption(source.getMaterialConsumption());
         return result;
     }
-
-
 }

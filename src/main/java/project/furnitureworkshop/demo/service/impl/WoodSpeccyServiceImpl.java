@@ -11,6 +11,7 @@ import project.furnitureworkshop.demo.service.WoodSpeccyService;
 import project.furnitureworkshop.demo.validator.WoodSpeccyValidator;
 
 import java.util.Collection;
+
 @Service
 @Transactional(readOnly = true)
 public class WoodSpeccyServiceImpl implements WoodSpeccyService {
@@ -20,8 +21,6 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
     private final WoodSpeccyConverter woodSpeccyConverter;
 
     private final WoodSpeccyValidator woodSpeccyValidator;
-
-
 
     public WoodSpeccyServiceImpl(WoodSpeccyRepository woodSpeciesRepository, WoodSpeccyConverter woodSpeccyConverter, WoodSpeccyValidator woodSpeccyValidator) {
         this.woodSpeciesRepository = woodSpeciesRepository;
@@ -37,30 +36,31 @@ public class WoodSpeccyServiceImpl implements WoodSpeccyService {
 
     @Override
     public WoodSpeccyDTO getById(Integer id) {
-        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood not found:" + id));
+        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood not found: " + id));
         return woodSpeccyConverter.convertToDto(woodSpecies);
     }
 
     @Override
     @Transactional
     public Integer createWoodSpeccy(WoodSpeccyDTO woodSpeciesToCreate) {
+        woodSpeccyValidator.validateWoodSpeccy(woodSpeciesToCreate);
         WoodSpeccy woodSpecies = woodSpeccyConverter.convertToEntity(woodSpeciesToCreate);
-        WoodSpeccy saveWoodSpecies =  woodSpeciesRepository.save(woodSpecies);
+        WoodSpeccy saveWoodSpecies = woodSpeciesRepository.save(woodSpecies);
         return saveWoodSpecies.getId();
     }
 
     @Override
     @Transactional
     public void deleteWoodSpeccy(Integer id) {
-        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Wood species not found:" + id));
+        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood species not found: " + id));
         woodSpeciesRepository.delete(woodSpecies);
-
     }
 
     @Override
     @Transactional
     public WoodSpeccyDTO updateWoodSpeccy(Integer id, WoodSpeccyDTO woodSpeciesToUpdate) {
-        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Wood species not found:" + id));
+        woodSpeccyValidator.validateWoodSpeccy(woodSpeciesToUpdate);
+        WoodSpeccy woodSpecies = woodSpeciesRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Wood species not found: " + id));
         WoodSpeccy entityToUpdate = woodSpeccyConverter.convertToEntity(woodSpeciesToUpdate);
         entityToUpdate.setId(id);
         WoodSpeccy updateEntity = woodSpeciesRepository.save(entityToUpdate);

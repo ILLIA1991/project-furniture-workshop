@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import project.furnitureworkshop.demo.controller.dto.OrderDTO;
-import project.furnitureworkshop.demo.repository.model.Order;
+import project.furnitureworkshop.demo.repository.model.Orders;
 
 import java.util.List;
 
@@ -21,24 +21,25 @@ public class OrderConverter {
         this.orderItemConverter = orderItemConverter;
     }
 
-    public OrderDTO convertToDto(Order order) {
-        return convert(order);
+    public OrderDTO convertToDto(Orders orders) {
+        return convert(orders);
     }
 
-    public List<OrderDTO> convertToDto(List<Order> all) {
+    public List<OrderDTO> convertToDto(List<Orders> all) {
         return all.stream()
                 .map(this::convert)
                 .toList();
     }
-    public Order convertToEntity(OrderDTO source) {
-        Order result = new Order();
+
+    public Orders convertToEntity(OrderDTO source) {
+        Orders result = new Orders();
         result.setClients(clientConverter.convertToEntity(source.getClient()));
         result.setOrdersItems(orderItemConverter.convertToEntity(source.getOrdersItems(), result));
         result.setOrderDate(source.getOrderDate());
         return result;
     }
 
-    private OrderDTO convert(Order source) {
+    private OrderDTO convert(Orders source) {
         OrderDTO target = new OrderDTO();
         target.setId(source.getId());
         target.setClient(clientConverter.convertToDto(source.getClients()));

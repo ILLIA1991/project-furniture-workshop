@@ -1,32 +1,32 @@
-настроить username и email в настройках гитв на компе
-предлагаю String hardness хранить как enum.
+настроить username и email в настройках гитв на компе                 ГОТОВО
+предлагаю String hardness хранить как enum.                           ГОТОВО
 
 валидация сущностей
 
 ClientDTO
-    - name - не пустое, буквы
-    - surname - не пустое, буквы
-    - email - по паттерну + проверка на уникальность через БД
-    - phone - только цифры
+    - name - не пустое, буквы                                            (ГОТОВО)
+    - surname - не пустое, буквы                                          (ГОТОВО)
+    - email - по паттерну + проверка на уникальность через БД             (ГОТОВО)
+    - phone - только цифры                                                 (ГОТОВО)
 
 FurnitureDTO
-    - name - не пустое
-    - materialConsumption - не пустое и > BigDecimal.ZERO
+    - name - не пустое                                                     (ГОТОВО)
+    - materialConsumption - не пустое и > BigDecimal.ZERO                  (ГОТОВО)
 
 WoodSpeccyDTO
-    woodType - не пустая строка
-    hardness - существует
-    cubicMeterPrice - не null и > BigDecimal.ZERO
+    woodType - не пустая строка                                            (ГОТОВО)
+    hardness - существует                                                  (ГОТОВО)
+    cubicMeterPrice - не null и > BigDecimal.ZERO                          (ГОТОВО)
 
 OrderDTO
-    - client  - client.getId() != null
-    - orderDate - != null
-    - orderItems  - не пустой массив
+    - client  - client.getId() != null                                     (ГОТОВО)
+    - orderDate - != null                                                  (ГОТОВО)
+    - orderItems  - не пустой массив                                        (ГОТОВО)
     OrderItemDTO
-        - furniture - furniture.getId() != null
-        - wood  - wood.getId() != null
-        - quantity != null, > 0
-        - price != null, > BigDecimal.ZERO
+        - furniture - furniture.getId() != null                              (ГОТОВО)
+        - wood  - wood.getId() != null                                        (ГОТОВО)
+        - quantity != null, > 0                                               (ГОТОВО)
+        - price != null, > BigDecimal.ZERO                                    (ГОТОВО)
 
 
 создать эндпоинт для предварительного расчета цены.

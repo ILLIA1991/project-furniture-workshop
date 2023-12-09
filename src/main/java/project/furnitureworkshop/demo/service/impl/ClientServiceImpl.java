@@ -22,7 +22,6 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientValidator clientValidator;
 
-
     public ClientServiceImpl(ClientRepository clientRepository, ClientConverter clientConverter, ClientValidator clientValidator) {
         this.clientRepository = clientRepository;
         this.clientConverter = clientConverter;
@@ -37,13 +36,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ClientDTO getById(Integer id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found: " + id));
         return clientConverter.convertToDto(client);
     }
 
     @Override
     @Transactional
     public Integer createClient(ClientDTO clientsToCreate) {
+        clientValidator.validateClient(clientsToCreate);
         Client client = clientConverter.convertToEntity(clientsToCreate);
         Client savedClient = clientRepository.save(client);
         return savedClient.getId();
@@ -51,15 +51,17 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Integer id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("You're not with us anymore!:" + id));
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("You're not with us anymore!: " + id));
         clientRepository.delete(client);
     }
 
     @Override
     @Transactional
     public ClientDTO updateClient(Integer id, ClientDTO clientsToUpdate) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found:" + id));
+        clientValidator.validateClient(clientsToUpdate);
+        Client client = clientRepository.findById(id).orElseThrow(() -> new FurnitureWorkshopNotFoundException("Client not found: " + id));
         Client entityToUpdate = clientConverter.convertToEntity(clientsToUpdate);
         entityToUpdate.setId(id);
         Client updatedEntity = clientRepository.save(entityToUpdate);

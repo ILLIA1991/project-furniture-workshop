@@ -1,4 +1,4 @@
-INSERT INTO public.clients(
+INSERT INTO public.client(
 	 id, name, surname, email, phone)
 	VALUES (111, 'Martin', 'Lowrence', 'at@mail.com', '37067894653'),
      (222, 'Dwayn', 'Jonson', 'tati@mail.com', '37067893544'),

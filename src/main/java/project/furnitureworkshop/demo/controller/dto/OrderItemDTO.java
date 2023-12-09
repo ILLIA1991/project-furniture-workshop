@@ -18,7 +18,6 @@ public class OrderItemDTO {
         this.id = id;
     }
 
-
     public FurnitureDTO getFurniture() {
         return furniture;
     }
@@ -49,5 +48,8 @@ public class OrderItemDTO {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setWoodSpeccy(WoodSpeccyDTO woodSpeccy) {
     }
 }

@@ -11,14 +11,17 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JoinColumn
+
     @ManyToOne
-    private Order order;
-    @JoinColumn
+    @JoinColumn(name = "order_id")
+    private Orders orders;
+
     @ManyToOne
+    @JoinColumn(name = "furniture_id")
     private Furniture furniture;
-    @JoinColumn
+
     @ManyToOne
+    @JoinColumn(name = "wood_id")
     private WoodSpeccy woodSpeccy;
     @Column(name = "quantity")
     private Integer quantity;
@@ -41,12 +44,12 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public Orders getOrder() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.orders = orders;
     }
 
     public Furniture getFurniture() {
@@ -72,6 +75,5 @@ public class OrderItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 
 }
